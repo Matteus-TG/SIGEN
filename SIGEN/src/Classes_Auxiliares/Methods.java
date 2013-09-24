@@ -14,7 +14,7 @@ import java.util.Locale;
  *
  * @author matt
  */
-public class EditDate {
+public class Methods {
 
     public static String formatData(java.util.Date d) {
         String aux, aux2 = "";

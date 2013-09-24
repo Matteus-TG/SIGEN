@@ -4,7 +4,7 @@
  */
 package Interfaces;
 
-import Classes_Auxiliares.EditDate;
+import Classes_Auxiliares.Methods;
 import DAO.EnderecoDAO;
 import DAO.ProprietarioDAO;
 import Modelo.Cidades;
@@ -365,7 +365,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
             proprietario.setPro_nascimento(jDCNascimento.getDate());
 
             if (verifica(proprietario)) {
-                if (EditDate.validaCPF(jFTCPF.getText())) {
+                if (Methods.validaCPF(jFTCPF.getText())) {
                     edao.adicionar(endereco);
                     pdao.adicionar(proprietario);
                     limpar();
