@@ -450,11 +450,5 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jLBairro.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLNumero.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLRG.setFont(new java.awt.Font("Tahoma", 1, 18));
-        /* jLNome.setText("<html><u>Nome:</u></html>");
-         jLCPF.setText("<html><u>CPF:</u></html>");
-         jLLogradouro.setText("<html><u>Logradouro:</u></html>");
-         jLBairro.setText("<html><u>Bairro:</u></html>");
-         jLNumero.setText("<html><u>Número:</u></html>");
-         jLRG.setText("<html><u>RG:</u></html>");*/
     }
 }

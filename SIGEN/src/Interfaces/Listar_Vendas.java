@@ -47,7 +47,7 @@ public class Listar_Vendas extends javax.swing.JInternalFrame {
         jCBChapa.removeAllItems();
         jCBQuadra.removeAllItems();
         tdao = new TumuloDAO();
-        tumulosQuadras = tdao.listarQuadras();
+        tumulosQuadras = tdao.listarQuadrasVendidas();
         for (int i = 0; i < tumulosQuadras.size(); i++) {
             jCBQuadra.addItem(tumulosQuadras.get(i).getQuadra());
         }

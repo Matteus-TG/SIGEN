@@ -6,16 +6,13 @@ package Interfaces;
 
 import DAO.EnderecoDAO;
 import DAO.FuncionarioDAO;
-import DAO.ProprietarioDAO;
 import Modelo.Cidades;
 import Modelo.Enderecos;
 import Modelo.Estados;
 import Modelo.Funcionarios;
-import Modelo.Proprietarios;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -42,6 +39,7 @@ public class Alterar_funcionario extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         fillField(ID);
+        preencheCidade();
     }
 
     /**
@@ -440,7 +438,7 @@ public class Alterar_funcionario extends javax.swing.JFrame {
     private javax.swing.JTextField jTRG;
     // End of variables declaration//GEN-END:variables
 
-    public void fillField(int ID) throws SQLException {
+    private void fillField(int ID) throws SQLException {
         fdao = new FuncionarioDAO();
         funcionario = fdao.getEdit(ID);
         jTNome.setText(funcionario.getFun_nome());
@@ -454,5 +452,19 @@ public class Alterar_funcionario extends javax.swing.JFrame {
         jTComplemento.setText(funcionario.getEndereco().getEnd_complemento());
         jFTCelular.setText(funcionario.getCel_numero());
         jFTTelefone.setText(funcionario.getTel_numero());
+
+        for (int i = 0; i < 27; i++) {
+            if (funcionario.getEndereco().getCidade().getEstado().getEst_sigla().equals(jCBUF.getItemAt(i))) {
+                jCBUF.setSelectedIndex(i);
+            }
+        }
+    }
+
+    private void preencheCidade() {
+        for (int i = 0; i < jCBCidade.getItemCount(); i++) {
+            if (funcionario.getEndereco().getCidade().getCid_nome().equals(jCBCidade.getItemAt(i))) {
+                jCBCidade.setSelectedIndex(i);
+            }
+        }
     }
 }

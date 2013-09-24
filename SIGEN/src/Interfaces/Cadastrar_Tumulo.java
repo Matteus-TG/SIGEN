@@ -11,6 +11,7 @@ import Modelo.Quadras;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -166,11 +167,22 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
             Chapas chapa = new Chapas();
 
             quadra.setQuadra(jTQuadra.getText());
-            tdao.adicionarQuadra(quadra);
             letra.setLetra(jTLetra.getText());
-            tdao.adicionarLetra(letra, quadra.getQuadra());
             chapa.setChapa(jTChapa.getText());
-            tdao.adicionarChapa(chapa);
+
+            letra.setQuadra(quadra);
+            chapa.setLetra(letra);
+
+            if (verifica(chapa)) {
+                tdao.adicionarQuadra(quadra);
+                tdao.adicionarLetra(letra, quadra.getQuadra());
+                tdao.adicionarChapa(chapa);
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados obrigatórios (campos em negrito) faltando, por favor preencher corretamente.");
+                marcaCampo();
+            }
+
+
         } catch (SQLException ex) {
             Logger.getLogger(Cadastrar_Tumulo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -195,5 +207,19 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
         jTChapa.setText("");
         jTQuadra.setText("");
         jTLetra.setText("");
+    }
+
+    private boolean verifica(Chapas chapa) {
+        if (((chapa.getChapa().equals("")) || chapa.getLetra().getLetra().equals(""))
+                || chapa.getLetra().getQuadra().getQuadra().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    private void marcaCampo() {
+        jLChapa.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLLetra.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLQuadra.setFont(new java.awt.Font("Tahoma", 1, 18));
     }
 }

@@ -321,10 +321,12 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
         String aux = String.valueOf(jCBQuadra.getSelectedItem());
         String aux2 = String.valueOf(jCBLetra.getSelectedItem());
         jCBChapa.removeAllItems();
-
+        System.out.println("1");
         tdao = new TumuloDAO();
-        tumulosChapas = tdao.listarChapasVendidas(tdao.pegaIDLetra(aux, aux2), aux);
+        tumulosChapas = tdao.listarChapas(tdao.pegaIDLetra(aux, aux2), aux);
+        System.out.println("9");
         for (int i = 0; i < tumulosChapas.size(); i++) {
+            System.out.println("10");
             jCBChapa.addItem(tumulosChapas.get(i).getChapa());
         }
     }//GEN-LAST:event_jCBLetraActionPerformed

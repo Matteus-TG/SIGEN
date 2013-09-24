@@ -360,8 +360,12 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
 
     private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
         try {
-            Alterar_funcionario af = new Alterar_funcionario(funcionarios.get(tabela.getSelectedRow()).getFun_codigo());
-            af.setVisible(true);
+            if (tabela.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "Selecione um cadastro a ser alterado.");
+            } else {
+                Alterar_funcionario af = new Alterar_funcionario(funcionarios.get(tabela.getSelectedRow()).getFun_codigo());
+                af.setVisible(true);
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
         }

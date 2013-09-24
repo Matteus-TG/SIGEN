@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Classes_Auxiliares.Methods;
 import DAO.EnderecoDAO;
 import DAO.FuncionarioDAO;
 import DAO.LoginDAO;
@@ -35,10 +36,12 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     public Cadastrar_Funcionario() throws ParseException {
         super("SIGEN - Cadastro de Funcionários");
         initComponents();
-        MaskFormatter maskData = new MaskFormatter("(##) ####-####");
-        MaskFormatter maskData2 = new MaskFormatter("(##) ####-####");
-        maskData.install(jFTTelefone);
-        maskData2.install(jFTCelular);
+        MaskFormatter maskTelefone = new MaskFormatter("(##) ####-####");
+        MaskFormatter maskCelular = new MaskFormatter("(##) ####-####");
+        MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+        maskTelefone.install(jFTTelefone);
+        maskCelular.install(jFTCelular);
+        maskCPF.install(jFTCPF);
         jTLogin.setToolTipText("PrimeiroNome.UltimoNome");
     }
 
@@ -62,7 +65,6 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jBLimpar = new javax.swing.JButton();
         jTNome = new javax.swing.JTextField();
         jTRG = new javax.swing.JTextField();
-        jTCPF = new javax.swing.JTextField();
         jLCabecalho = new javax.swing.JLabel();
         jLCTPS = new javax.swing.JLabel();
         jTCTPS = new javax.swing.JTextField();
@@ -84,6 +86,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jTLogradouro = new javax.swing.JTextField();
         jLLogin = new javax.swing.JLabel();
         jTLogin = new javax.swing.JTextField();
+        jFTCPF = new javax.swing.JFormattedTextField();
 
         setClosable(true);
 
@@ -127,8 +130,6 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jTNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTRG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLCabecalho.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLCabecalho.setText("Cadastro de Funcionários");
@@ -193,6 +194,8 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
 
         jTLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,8 +252,8 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                                         .addComponent(jFTCelular))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLCPF)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLRG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -281,7 +284,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTCPF, jTRG});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFTCPF, jTRG});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadastrar, jBLimpar});
 
@@ -290,7 +293,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLCabecalho)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,10 +305,10 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCPF)
                     .addComponent(jLRG)
-                    .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLCTPS)
-                    .addComponent(jTCTPS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTCTPS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTelefone)
@@ -386,20 +389,30 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
             endereco.setEnd_numero(jTNumero.getText());
             endereco.setEnd_cep(jTCEP.getText());
             endereco.setEnd_complemento(jTComplemento.getText());
-            edao.adicionar(endereco);
             endereco.setEnd_id(edao.CapturarEndereco());
             funcionario.setEndereco(endereco);
             funcionario.setFun_nome(jTNome.getText());
-            funcionario.setFun_cpf(jTCPF.getText());
+            funcionario.setFun_cpf(jFTCPF.getText());
             funcionario.setFun_rg(jTRG.getText());
             funcionario.setCel_numero(jFTCelular.getText());
             funcionario.setTel_numero(jFTTelefone.getText());
             funcionario.setFun_ctps(jTCTPS.getText());
-            fdao.adicionar(funcionario);
             login.setLog_nome(jTLogin.getText());
             login.setFun_codigo(fdao.getLast());
-            ldao.adicionar(login);
-            limpar();
+
+            if (verifica(funcionario, login)) {
+                if (Methods.validaCPF(jFTCPF.getText())) {
+                    edao.adicionar(endereco);
+                    fdao.adicionar(funcionario);
+                    ldao.adicionar(login);
+                    limpar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "CPF inválido, por favor preencher corretamente.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados obrigatórios (campos em negrito) faltando, por favor preencher corretamente.");
+                marcaCampo();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -409,6 +422,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBLimpar;
     private javax.swing.JComboBox jCBCidade;
     private javax.swing.JComboBox jCBUF;
+    private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JFormattedTextField jFTCelular;
     private javax.swing.JFormattedTextField jFTTelefone;
     private javax.swing.JLabel jLBairro;
@@ -430,7 +444,6 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTCEP;
-    private javax.swing.JTextField jTCPF;
     private javax.swing.JTextField jTCTPS;
     private javax.swing.JTextField jTComplemento;
     private javax.swing.JTextField jTLogin;
@@ -443,7 +456,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     private void limpar() {
         jTBairro.setText("");
         jTCEP.setText("");
-        jTCPF.setText("");
+        jFTCPF.setText("");
         jTComplemento.setText("");
         jTNome.setText("");
         jTRG.setText("");
@@ -454,5 +467,25 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jTCTPS.setText("");
         jCBUF.setSelectedIndex(1);
         jCBCidade.removeAllItems();
+    }
+
+    public boolean verifica(Funcionarios funcionario, Login login) {
+        if (((((((funcionario.getFun_nome().equals("")) || login.getLog_nome().equals(""))
+                || funcionario.getFun_cpf().equals("   .   .   -  ")) || funcionario.getFun_rg().equals(""))
+                || funcionario.getFun_ctps().equals("")) || funcionario.getEndereco().getEnd_logradouro().equals(""))
+                || funcionario.getEndereco().getEnd_bairro().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    public void marcaCampo() {
+        jLNome.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLLogin.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLCPF.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLRG.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLCTPS.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLLogradouro.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLBairro.setFont(new java.awt.Font("Tahoma", 1, 18));
     }
 }
