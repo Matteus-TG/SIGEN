@@ -33,10 +33,10 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
     Enderecos endereco = new Enderecos();
     Cidades cidade = new Cidades();
     Estados estado = new Estados();
-
+    
     public Alterar_Proprietario(int ID) throws SQLException, ParseException {
         super("SIGEN - Alteração de Cadastro de Clientes");
-
+        
         this.setResizable(false);
         initComponents();
         setLocationRelativeTo(null);
@@ -45,6 +45,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         maskData.install(jFTTelefone);
         maskData2.install(jFTCelular);
         fillField(ID);
+        preencheCidade();
     }
 
     /**
@@ -337,23 +338,23 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         i = 0;
         edao = new EnderecoDAO();
         cidadeNomes = edao.listarCidades(aux);
-
+        
         while (i < cidadeNomes.size()) {
             jCBCidade.addItem(cidadeNomes.get(i));
             i++;
         }
     }//GEN-LAST:event_jCBUFActionPerformed
-
+    
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
         if ((jDCNascimento.getDate() != null) || (jCBCidade.getSelectedItem() != null)) {
             try {
                 Cidades cidade = new Cidades();
                 Enderecos endereco = new Enderecos();
                 Proprietarios proprietarioAux = new Proprietarios();
-
+                
                 edao = new EnderecoDAO();
                 pdao = new ProprietarioDAO();
-
+                
                 cidade.setCid_codigo(edao.CapturarID(String.valueOf(jCBUF.getSelectedItem()), String.valueOf(jCBCidade.getSelectedItem())));
                 endereco.setCidade(cidade);
                 endereco.setEnd_logradouro(jTLogradouro.getText());
@@ -363,7 +364,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
                 endereco.setEnd_complemento(jTComplemento.getText());
                 endereco.setEnd_id(proprietario.getEndereco().getEnd_id());
                 edao.editar(endereco);
-
+                
                 endereco.setEnd_id(edao.CapturarEndereco());
                 proprietarioAux.setEndereco(endereco);
                 proprietarioAux.setPro_nome(jTNome.getText());
@@ -375,7 +376,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
                 proprietarioAux.setPro_nascimento(jDCNascimento.getDate());
                 pdao.editar(proprietarioAux);
                 JOptionPane.showMessageDialog(null, "Cliente editado com Sucesso!");
-
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -383,7 +384,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguns campos obrigatórios estão faltando. Por favor, preenche-los!");
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
-
+    
     private void jBLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimparActionPerformed
         jTNome.setText("aaaaaaaaaaaa");
         jTBairro.setText("");
@@ -399,7 +400,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         jCBUF.setSelectedIndex(1);
         jCBCidade.removeAllItems();
     }//GEN-LAST:event_jBLimparActionPerformed
-
+    
     private void jTLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLogradouroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTLogradouroActionPerformed
@@ -450,5 +451,19 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         jTComplemento.setText(proprietario.getEndereco().getEnd_complemento());
         jFTCelular.setText(proprietario.getCel_numero());
         jFTTelefone.setText(proprietario.getTel_numero());
+        
+        for (int i = 0; i < 27; i++) {
+            if (proprietario.getEndereco().getCidade().getEstado().getEst_sigla().equals(jCBUF.getItemAt(i))) {
+                jCBUF.setSelectedIndex(i);
+            }
+        }
+    }
+    
+    public void preencheCidade() {
+        for (int i = 0; i < jCBCidade.getItemCount(); i++) {
+            if (proprietario.getEndereco().getCidade().getCid_nome().equals(jCBCidade.getItemAt(i))) {
+                jCBCidade.setSelectedIndex(i);
+            }
+        }
     }
 }
