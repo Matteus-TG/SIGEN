@@ -10,6 +10,7 @@ import DAO.ProprietarioDAO;
 import Modelo.Cidades;
 import Modelo.Enderecos;
 import Modelo.Proprietarios;
+import br.com.caelum.stella.validation.CPFValidator;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
