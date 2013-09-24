@@ -4,7 +4,7 @@
  */
 package Interfaces;
 
-import Classes_Auxiliares.EditDate;
+import Classes_Auxiliares.Methods;
 import DAO.TumuloDAO;
 import DAO.VendaDAO;
 import Modelo.Chapas;
@@ -299,7 +299,7 @@ public class Listar_Vendas extends javax.swing.JInternalFrame {
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getQuadra().getQuadra(), i, 3);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getChapa(), i, 4);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getLetra(), i, 5);
-                    tmVenda.setValueAt(EditDate.formatData(vendas.get(i).getVen_data()), i, 6);
+                    tmVenda.setValueAt(Methods.formatData(vendas.get(i).getVen_data()), i, 6);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Listar_Vendas.class.getName()).log(Level.SEVERE, null, ex);
@@ -331,7 +331,7 @@ public class Listar_Vendas extends javax.swing.JInternalFrame {
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getQuadra().getQuadra(), i, 3);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getChapa(), i, 4);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getLetra(), i, 5);
-                    tmVenda.setValueAt(EditDate.formatData(vendas.get(i).getVen_data()), i, 6);
+                    tmVenda.setValueAt(Methods.formatData(vendas.get(i).getVen_data()), i, 6);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Listar_Vendas.class.getName()).log(Level.SEVERE, null, ex);
@@ -361,7 +361,7 @@ public class Listar_Vendas extends javax.swing.JInternalFrame {
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getQuadra().getQuadra(), i, 3);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getChapa(), i, 4);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getLetra(), i, 5);
-                    tmVenda.setValueAt(EditDate.formatData(vendas.get(i).getVen_data()), i, 6);
+                    tmVenda.setValueAt(Methods.formatData(vendas.get(i).getVen_data()), i, 6);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Listar_Vendas.class.getName()).log(Level.SEVERE, null, ex);
@@ -400,7 +400,7 @@ public class Listar_Vendas extends javax.swing.JInternalFrame {
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getQuadra().getQuadra(), i, 3);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getChapa(), i, 4);
                     tmVenda.setValueAt(vendas.get(i).getChapa().getLetra().getLetra(), i, 5);
-                    tmVenda.setValueAt(EditDate.formatData(vendas.get(i).getVen_data()), i, 6);
+                    tmVenda.setValueAt(Methods.formatData(vendas.get(i).getVen_data()), i, 6);
                 }
                 jRBTumulo.setSelected(false);
             } catch (SQLException ex) {
