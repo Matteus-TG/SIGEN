@@ -4,11 +4,13 @@
  */
 package Interfaces;
 
+import Classes_Auxiliares.EditDate;
 import DAO.EnderecoDAO;
 import DAO.ProprietarioDAO;
 import Modelo.Cidades;
 import Modelo.Enderecos;
 import Modelo.Proprietarios;
+import br.com.caelum.stella.validation.CPFValidator;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -32,10 +34,14 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     public Cadastrar_Proprietario() throws ParseException {
         super("SIGEN - Cadastro de Proprietários");
         initComponents();
-        MaskFormatter maskData = new MaskFormatter("(##) ####-####");
-        MaskFormatter maskData2 = new MaskFormatter("(##) ####-####");
-        maskData.install(jFTTelefone);
-        maskData2.install(jFTCelular);
+        MaskFormatter maskTelefone = new MaskFormatter("(##) ####-####");
+        MaskFormatter maskCelular = new MaskFormatter("(##) #####-####");
+        MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+        MaskFormatter maskCEP = new MaskFormatter("#####-###");
+        maskTelefone.install(jFTTelefone);
+        maskCelular.install(jFTCelular);
+        maskCPF.install(jFTCPF);
+        maskCEP.install(jFTCEP);
     }
 
     /**
@@ -61,12 +67,10 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jLCidade = new javax.swing.JLabel();
         jLEstado = new javax.swing.JLabel();
         jTNome = new javax.swing.JTextField();
-        jTCPF = new javax.swing.JTextField();
         jTRG = new javax.swing.JTextField();
         jTLogradouro = new javax.swing.JTextField();
         jTNumero = new javax.swing.JTextField();
         jTBairro = new javax.swing.JTextField();
-        jTCEP = new javax.swing.JTextField();
         jTComplemento = new javax.swing.JTextField();
         jCBUF = new javax.swing.JComboBox();
         jFTTelefone = new javax.swing.JFormattedTextField();
@@ -78,6 +82,8 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jCBCidade = new javax.swing.JComboBox();
         jDCNascimento = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jFTCPF = new javax.swing.JFormattedTextField();
+        jFTCEP = new javax.swing.JFormattedTextField();
 
         setClosable(true);
 
@@ -122,22 +128,13 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
 
         jTNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         jTRG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTLogradouro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTLogradouro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTLogradouroActionPerformed(evt);
-            }
-        });
 
         jTNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jTCEP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTComplemento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -182,6 +179,10 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Nascimento:");
 
+        jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jFTCEP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,9 +194,9 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(172, 172, 172)
                 .addComponent(jLCabecalho)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -230,10 +231,10 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                             .addComponent(jLCelular)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jFTCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLCEP)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFTCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -246,8 +247,8 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                                     .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLCPF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLRG)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -256,7 +257,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                         .addComponent(jLNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                .addGap(28, 28, 28))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadastrar, jBLimpar});
@@ -274,8 +275,8 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCPF)
                     .addComponent(jLRG)
-                    .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
@@ -306,10 +307,10 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCEP)
-                    .addComponent(jTCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLComplemento)
-                    .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFTCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jBLimpar))
@@ -322,23 +323,8 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLogradouroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTLogradouroActionPerformed
-
     private void jBLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimparActionPerformed
-        jTBairro.setText("");
-        jTCEP.setText("");
-        jTCPF.setText("");
-        jTComplemento.setText("");
-        jTNome.setText("");
-        jTRG.setText("");
-        jTLogradouro.setText("");
-        jTNumero.setText("");
-        jFTCelular.setText("");
-        jFTTelefone.setText("");
-        jCBUF.setSelectedIndex(1);
-        jCBCidade.removeAllItems();
+        limpar();
     }//GEN-LAST:event_jBLimparActionPerformed
 
     private void jCBUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUFActionPerformed
@@ -368,22 +354,33 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
             endereco.setEnd_logradouro(jTLogradouro.getText());
             endereco.setEnd_bairro(jTBairro.getText());
             endereco.setEnd_numero(jTNumero.getText());
-            endereco.setEnd_cep(jTCEP.getText());
+            endereco.setEnd_cep(jFTCEP.getText());
             endereco.setEnd_complemento(jTComplemento.getText());
-            edao.adicionar(endereco);
-
             endereco.setEnd_id(edao.CapturarEndereco());
             proprietario.setEndereco(endereco);
             proprietario.setPro_nome(jTNome.getText());
-            proprietario.setPro_cpf(jTCPF.getText());
+            proprietario.setPro_cpf(jFTCPF.getText());
             proprietario.setPro_rg(jTRG.getText());
             proprietario.setCel_numero(jFTCelular.getText());
             proprietario.setTel_numero(jFTTelefone.getText());
             proprietario.setPro_nascimento(jDCNascimento.getDate());
-            pdao.adicionar(proprietario);
+
+            if (verifica(proprietario)) {
+                if (EditDate.validaCPF(jFTCPF.getText())) {
+                    edao.adicionar(endereco);
+                    pdao.adicionar(proprietario);
+                    limpar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "CPF inválido, por favor preencher corretamente.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados obrigatórios (campos em negrito) faltando, por favor preencher corretamente.");
+                marcaCampo();
+            }
+
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -392,6 +389,8 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jCBCidade;
     private javax.swing.JComboBox jCBUF;
     private com.toedter.calendar.JDateChooser jDCNascimento;
+    private javax.swing.JFormattedTextField jFTCEP;
+    private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JFormattedTextField jFTCelular;
     private javax.swing.JFormattedTextField jFTTelefone;
     private javax.swing.JLabel jLBairro;
@@ -411,12 +410,52 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTBairro;
-    private javax.swing.JTextField jTCEP;
-    private javax.swing.JTextField jTCPF;
     private javax.swing.JTextField jTComplemento;
     private javax.swing.JTextField jTLogradouro;
     private javax.swing.JTextField jTNome;
     private javax.swing.JTextField jTNumero;
     private javax.swing.JTextField jTRG;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        jTBairro.setText("");
+        jFTCEP.setText("");
+        jFTCPF.setText("");
+        jTComplemento.setText("");
+        jTNome.setText("");
+        jTRG.setText("");
+        jTLogradouro.setText("");
+        jTNumero.setText("");
+        jFTCelular.setText("");
+        jFTTelefone.setText("");
+        jCBUF.setSelectedIndex(1);
+        jCBCidade.removeAllItems();
+    }
+
+    public boolean verifica(Proprietarios proprietario) {
+        if ((((((proprietario.getPro_nome().equals(""))
+                || proprietario.getPro_cpf().equals("   .   .   -  "))
+                || proprietario.getEndereco().getEnd_logradouro().equals(""))
+                || proprietario.getEndereco().getEnd_bairro().equals(""))
+                || proprietario.getEndereco().getEnd_numero().equals(""))
+                || proprietario.getPro_rg().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    public void marcaCampo() {
+        jLNome.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLCPF.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLLogradouro.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLBairro.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLNumero.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLRG.setFont(new java.awt.Font("Tahoma", 1, 18));
+        /* jLNome.setText("<html><u>Nome:</u></html>");
+         jLCPF.setText("<html><u>CPF:</u></html>");
+         jLLogradouro.setText("<html><u>Logradouro:</u></html>");
+         jLBairro.setText("<html><u>Bairro:</u></html>");
+         jLNumero.setText("<html><u>Número:</u></html>");
+         jLRG.setText("<html><u>RG:</u></html>");*/
+    }
 }

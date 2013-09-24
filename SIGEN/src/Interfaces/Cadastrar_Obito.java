@@ -412,16 +412,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTIdade.setText("");
-        jTNome.setText("");
-        jTProtocolo.setText("");
-        jTDocumento.setText("");
-        jTGuia.setText("");
-        jTFiliacaoP.setText("");
-        jTMedico.setText("");
-        jTFiliacaoM.setText("");
-        jTCausa.setText("");
-        jDCData.setDate(null);
+        limpar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCBUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUFActionPerformed
@@ -463,6 +454,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             obito.setObi_medico(jTMedico.getText());
             obito.setObi_causa_morte(jTCausa.getText());
             odao.adicionar(obito);
+            limpar();
         } catch (SQLException ex) {
             Logger.getLogger(Cadastrar_Obito.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -544,4 +536,17 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTProprietario;
     private javax.swing.JTextField jTProtocolo;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        jTIdade.setText("");
+        jTNome.setText("");
+        jTProtocolo.setText("");
+        jTDocumento.setText("");
+        jTGuia.setText("");
+        jTFiliacaoP.setText("");
+        jTMedico.setText("");
+        jTFiliacaoM.setText("");
+        jTCausa.setText("");
+        jDCData.setDate(null);
+    }
 }

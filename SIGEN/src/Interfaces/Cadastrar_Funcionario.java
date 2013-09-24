@@ -290,7 +290,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLCabecalho)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,19 +348,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimparActionPerformed
-        jTBairro.setText("");
-        jTCEP.setText("");
-        jTCPF.setText("");
-        jTComplemento.setText("");
-        jTNome.setText("");
-        jTRG.setText("");
-        jTLogradouro.setText("");
-        jTNumero.setText("");
-        jFTCelular.setText("");
-        jFTTelefone.setText("");
-        jTCTPS.setText("");
-        jCBUF.setSelectedIndex(1);
-        jCBCidade.removeAllItems();
+        limpar();
     }//GEN-LAST:event_jBLimparActionPerformed
 
     private void jCBUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUFActionPerformed
@@ -411,6 +399,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
             login.setLog_nome(jTLogin.getText());
             login.setFun_codigo(fdao.getLast());
             ldao.adicionar(login);
+            limpar();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -450,4 +439,20 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNumero;
     private javax.swing.JTextField jTRG;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        jTBairro.setText("");
+        jTCEP.setText("");
+        jTCPF.setText("");
+        jTComplemento.setText("");
+        jTNome.setText("");
+        jTRG.setText("");
+        jTLogradouro.setText("");
+        jTNumero.setText("");
+        jFTCelular.setText("");
+        jFTTelefone.setText("");
+        jTCTPS.setText("");
+        jCBUF.setSelectedIndex(1);
+        jCBCidade.removeAllItems();
+    }
 }

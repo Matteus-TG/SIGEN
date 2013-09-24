@@ -155,9 +155,7 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTChapa.setText("");
-        jTQuadra.setText("");
-        jTLetra.setText("");
+        limpar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
@@ -192,4 +190,10 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTLetra;
     private javax.swing.JTextField jTQuadra;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        jTChapa.setText("");
+        jTQuadra.setText("");
+        jTLetra.setText("");
+    }
 }

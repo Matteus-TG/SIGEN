@@ -250,14 +250,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimparActionPerformed
-        //metodo utilizado para limpar os campos de preencimento
-        jTCliente.setText(""); //limpa o nome do cliente
-
-        while (tmVenda.getRowCount() > 0) { //while para tirar todas as linhas (limpar) da tabela
-            tmVenda.removeRow(0);
-        }
-        jDCData.setDate(null);
-        vendas = null;
+        limpar();
     }//GEN-LAST:event_jBLimparActionPerformed
 
     private void jTClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClienteKeyTyped
@@ -307,7 +300,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
             for (int i = 0; i < tumulosQuadras.size(); i++) {
                 jCBQuadra.addItem(tumulosQuadras.get(i).getQuadra());
             }
-
+            limpar();
         } catch (SQLException ex) {
             Logger.getLogger(Cadastrar_Venda.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -354,4 +347,15 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTCliente;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        //metodo utilizado para limpar os campos de preencimento
+        jTCliente.setText(""); //limpa o nome do cliente
+
+        while (tmVenda.getRowCount() > 0) { //while para tirar todas as linhas (limpar) da tabela
+            tmVenda.removeRow(0);
+        }
+        jDCData.setDate(null);
+        vendas = null;
+    }
 }

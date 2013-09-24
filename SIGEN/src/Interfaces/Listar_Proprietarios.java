@@ -361,8 +361,13 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
 
     private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
         try {
-            Alterar_Proprietario ap = new Alterar_Proprietario(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
-            ap.setVisible(true);
+            if (tabela.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "Selecione um cadastro a ser alterado.");
+            } else {
+                Alterar_Proprietario ap = new Alterar_Proprietario(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
+                ap.setVisible(true);
+            }
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
         } catch (ParseException ex) {
