@@ -5,9 +5,11 @@
 package Interfaces;
 
 import DAO.LoginDAO;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,10 +24,13 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         super("SIGEN - Acessso ao Sistema");
         this.setResizable(false);
+
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/icone.png")));
         jTLogin.setText("ADMIN");
         jPFSenha.setText("ADMIN");
         setLocationRelativeTo(null);
+
     }
 
     /**
@@ -48,6 +53,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("frame"); // NOI18N
 
         jLCabecalho.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLCabecalho.setText("SIGEN - Sistema de Gerenciamento de Necrópoles");
@@ -235,6 +241,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new Login().setVisible(true);
             }
         });

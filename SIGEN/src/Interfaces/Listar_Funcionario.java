@@ -46,10 +46,8 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRBCPF = new javax.swing.JRadioButton();
         jRBNome = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jTCPF = new javax.swing.JTextField();
         jTNome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
@@ -57,16 +55,11 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
         jBExcluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jFTCPF = new javax.swing.JFormattedTextField();
+        jBPesquisar = new javax.swing.JButton();
 
         setClosable(true);
-
-        jRBCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jRBCPF.setText("CPF:");
-        jRBCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBCPFActionPerformed(evt);
-            }
-        });
 
         jRBNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jRBNome.setText("Nome:");
@@ -78,13 +71,6 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Listagem de Funcionários");
-
-        jTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCPFActionPerformed(evt);
-            }
-        });
 
         jTNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTNome.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -118,6 +104,20 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Versão: 1.4.6");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("CPF:");
+
+        jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jBPesquisar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
+        jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,19 +127,22 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRBCPF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRBNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 933, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBExcluir)
-                            .addComponent(jBAtualizar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jBAtualizar, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jRBNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jFTCPF)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBPesquisar))
+                            .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
@@ -154,22 +157,25 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRBCPF)
-                    .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel4)
+                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBPesquisar))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRBNome)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAtualizar)
                         .addGap(18, 18, 18)
-                        .addComponent(jBExcluir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(jBExcluir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)))
@@ -178,53 +184,11 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRBCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBCPFActionPerformed
-        if (jRBCPF.isSelected()) {
-            try {
-                jRBNome.setSelected(false);
-                jRBCPF.setSelected(true);
-                jTNome.setText("");
-
-                fdao = new FuncionarioDAO();
-                funcionarios = fdao.listarCPF(jTCPF.getText());
-                String endereco;
-
-                while (tmFuncionario.getRowCount() > 0) {
-                    tmFuncionario.removeRow(0);
-                }
-
-                String[] linha = new String[]{null, null, null, null};
-                for (int i = 0; i < funcionarios.size(); i++) {
-                    endereco = funcionarios.get(i).getEndereco().getEnd_logradouro() + " - "
-                            + funcionarios.get(i).getEndereco().getEnd_numero() + ". "
-                            + funcionarios.get(i).getEndereco().getCidade().getCid_nome() + ", "
-                            + funcionarios.get(i).getEndereco().getCidade().getEstado().getEst_sigla() + " - "
-                            + funcionarios.get(i).getEndereco().getEnd_bairro() + ". CEP: "
-                            + funcionarios.get(i).getEndereco().getEnd_cep() + " ("
-                            + funcionarios.get(i).getEndereco().getEnd_complemento() + ").";
-
-                    tmFuncionario.addRow(linha);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_nome(), i, 0);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_data_cadastro(), i, 1);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_ctps(), i, 2);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_cpf(), i, 3);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_rg(), i, 4);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getTel_numero(), i, 5);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getCel_numero(), i, 6);
-                    tmFuncionario.setValueAt(endereco, i, 7);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jRBCPFActionPerformed
-
     private void jRBNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBNomeActionPerformed
         if (jRBNome.isSelected()) {
             try {
                 jRBNome.setSelected(true);
-                jRBCPF.setSelected(false);
-                jTCPF.setText("");
+                jFTCPF.setText("");
 
                 fdao = new FuncionarioDAO();
                 funcionarios = fdao.listarNome("%" + jTNome.getText() + "%");
@@ -264,8 +228,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
         if (jRBNome.isSelected()) {
             try {
                 jRBNome.setSelected(true);
-                jRBCPF.setSelected(false);
-                jTCPF.setText("");
+                jFTCPF.setText("");
 
                 fdao = new FuncionarioDAO();
                 funcionarios = fdao.listarNome("%" + jTNome.getText() + "%");
@@ -301,47 +264,6 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTNomeKeyTyped
 
-    private void jTCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCPFActionPerformed
-        if (jRBCPF.isSelected()) {
-            try {
-                jRBNome.setSelected(false);
-                jRBCPF.setSelected(true);
-                jTNome.setText("");
-
-                fdao = new FuncionarioDAO();
-                funcionarios = fdao.listarCPF(jTCPF.getText());
-                String endereco;
-
-                while (tmFuncionario.getRowCount() > 0) {
-                    tmFuncionario.removeRow(0);
-                }
-
-                String[] linha = new String[]{null, null, null, null};
-                for (int i = 0; i < funcionarios.size(); i++) {
-                    endereco = funcionarios.get(i).getEndereco().getEnd_logradouro() + " - "
-                            + funcionarios.get(i).getEndereco().getEnd_numero() + ". "
-                            + funcionarios.get(i).getEndereco().getCidade().getCid_nome() + ", "
-                            + funcionarios.get(i).getEndereco().getCidade().getEstado().getEst_sigla() + " - "
-                            + funcionarios.get(i).getEndereco().getEnd_bairro() + ". CEP: "
-                            + funcionarios.get(i).getEndereco().getEnd_cep() + " ("
-                            + funcionarios.get(i).getEndereco().getEnd_complemento() + ").";
-
-                    tmFuncionario.addRow(linha);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_nome(), i, 0);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_data_cadastro(), i, 1);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_ctps(), i, 2);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_cpf(), i, 3);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_rg(), i, 4);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getTel_numero(), i, 5);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getCel_numero(), i, 6);
-                    tmFuncionario.setValueAt(endereco, i, 7);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jTCPFActionPerformed
-
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         int pergunta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este Cliente?\n");
         if (pergunta == 0) {//clicou em sim  
@@ -370,16 +292,56 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
         }
     }//GEN-LAST:event_jBAtualizarActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+           try {
+                jRBNome.setSelected(false);
+                jTNome.setText("");
+
+                fdao = new FuncionarioDAO();
+                Funcionarios funcionario = fdao.listarCPF(jFTCPF.getText());
+                String endereco;
+
+                while (tmFuncionario.getRowCount() > 0) {
+                    tmFuncionario.removeRow(0);
+                }
+
+                String[] linha = new String[]{null, null, null, null};
+                for (int i = 0; i < funcionarios.size(); i++) {
+                    endereco = funcionarios.get(i).getEndereco().getEnd_logradouro() + " - "
+                            + funcionarios.get(i).getEndereco().getEnd_numero() + ". "
+                            + funcionarios.get(i).getEndereco().getCidade().getCid_nome() + ", "
+                            + funcionarios.get(i).getEndereco().getCidade().getEstado().getEst_sigla() + " - "
+                            + funcionarios.get(i).getEndereco().getEnd_bairro() + ". CEP: "
+                            + funcionarios.get(i).getEndereco().getEnd_cep() + " ("
+                            + funcionarios.get(i).getEndereco().getEnd_complemento() + ").";
+
+                    tmFuncionario.addRow(linha);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_nome(), i, 0);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_data_cadastro(), i, 1);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_ctps(), i, 2);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_cpf(), i, 3);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_rg(), i, 4);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getTel_numero(), i, 5);
+                    tmFuncionario.setValueAt(funcionarios.get(i).getCel_numero(), i, 6);
+                    tmFuncionario.setValueAt(endereco, i, 7);
+                }
+           }catch(SQLException ex){
+               
+           }
+    }//GEN-LAST:event_jBPesquisarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizar;
     private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBPesquisar;
+    private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRBCPF;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRBNome;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTCPF;
     private javax.swing.JTextField jTNome;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables

@@ -72,7 +72,7 @@ public class ProprietarioDAO {
         }
     }
 
-    public List<Proprietarios> listarCPF(String cpf) throws SQLException {
+    public Proprietarios listarCPF(String cpf) throws SQLException {
         String sql = "select proprietarios.pro_codigo,proprietarios.pro_nome,"
                 + "proprietarios.pro_rg,proprietarios.cel_numero,proprietarios.tel_numero,"
                 + "proprietarios.pro_nascimento,proprietarios.pro_cpf,"
@@ -86,15 +86,11 @@ public class ProprietarioDAO {
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
-        List<Proprietarios> proprietarios = new ArrayList<>();
-
+        Proprietarios proprietario = new Proprietarios();
+        Enderecos endereco = new Enderecos();
+        Cidades cidade = new Cidades();
+        Estados estado = new Estados();
         while (rs.next()) {
-
-            Proprietarios proprietario = new Proprietarios();
-            Enderecos endereco = new Enderecos();
-            Cidades cidade = new Cidades();
-            Estados estado = new Estados();
-
             proprietario.setPro_codigo(rs.getInt("pro_codigo"));
             proprietario.setPro_nome(rs.getString("pro_nome"));
             proprietario.setPro_rg(rs.getString("pro_rg"));
@@ -115,11 +111,10 @@ public class ProprietarioDAO {
             cidade.setCid_nome(rs.getString("cid_nome"));
             endereco.setCidade(cidade);
             proprietario.setEndereco(endereco);
-            proprietarios.add(proprietario);
         }
         rs.close();
         pstmt.close();
-        return proprietarios;
+        return proprietario;
     }
 
     public List<Proprietarios> listarNome(String nome) throws SQLException {

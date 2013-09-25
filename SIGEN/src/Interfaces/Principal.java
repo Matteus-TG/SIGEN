@@ -6,6 +6,7 @@ package Interfaces;
 
 import Classes_Auxiliares.Backup;
 import Classes_Auxiliares.InsertGoogleDrive;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -31,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         senha = s;
         this.setExtendedState(MAXIMIZED_BOTH);
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/icone.png")));
         setLocationRelativeTo(null);
     }
 
@@ -52,7 +54,6 @@ public class Principal extends javax.swing.JFrame {
         jMTumulo = new javax.swing.JMenu();
         jMICadastrar_Tumulo = new javax.swing.JMenuItem();
         jMIListar_Tumulos = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMICadastrar_Obito = new javax.swing.JMenuItem();
         jMIListar_Obitos = new javax.swing.JMenuItem();
@@ -126,7 +127,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMTumulo.add(jMIListar_Tumulos);
-        jMTumulo.add(jMenuItem1);
         jMTumulo.add(jSeparator1);
 
         jMICadastrar_Obito.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -282,9 +282,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadastrar_ClientesActionPerformed
 
     private void jMIListar_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_clientesActionPerformed
-        Listar_Proprietarios lp = new Listar_Proprietarios();
-        JPainel.add(lp);
-        lp.show();
+        try {
+            Listar_Proprietarios lp = new Listar_Proprietarios();
+            JPainel.add(lp);
+            lp.show();
+        } catch (ParseException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMIListar_clientesActionPerformed
 
     private void jMICadastrar_FuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_FuncionariosActionPerformed
@@ -398,7 +402,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMTumulo;
     private javax.swing.JMenu jMVendas;
     private javax.swing.JMenuBar jMenu;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

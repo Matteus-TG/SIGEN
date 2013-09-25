@@ -102,7 +102,7 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
-    public List<Funcionarios> listarCPF(String cpf) throws SQLException {
+    public Funcionarios listarCPF(String cpf) throws SQLException {
         String sql = "select funcionarios.fun_codigo,funcionarios.fun_nome,"
                 + "funcionarios.fun_rg,funcionarios.cel_numero,funcionarios.tel_numero,"
                 + "funcionarios.fun_data_cadastro,fun_ctps,funcionarios.fun_cpf,enderecos.end_id,"
@@ -115,14 +115,14 @@ public class FuncionarioDAO {
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
-        List<Funcionarios> funcionarios = new ArrayList<>();
 
+        Funcionarios funcionario = new Funcionarios();
+        Enderecos endereco = new Enderecos();
+        Cidades cidade = new Cidades();
+        Estados estado = new Estados();
         while (rs.next()) {
 
-            Funcionarios funcionario = new Funcionarios();
-            Enderecos endereco = new Enderecos();
-            Cidades cidade = new Cidades();
-            Estados estado = new Estados();
+
 
             funcionario.setFun_codigo(rs.getInt("fun_codigo"));
             funcionario.setFun_nome(rs.getString("fun_nome"));
@@ -145,11 +145,11 @@ public class FuncionarioDAO {
             cidade.setCid_nome(rs.getString("cid_nome"));
             endereco.setCidade(cidade);
             funcionario.setEndereco(endereco);
-            funcionarios.add(funcionario);
+
         }
         rs.close();
         pstmt.close();
-        return funcionarios;
+        return funcionario;
     }
 
     public void remover(int id) throws SQLException {
