@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -29,7 +30,7 @@ public class ProprietarioDAO {
         this.conexao = ConnectionFactory.getConexao();
     }
 
-    public void adicionar(Proprietarios proprietario) throws SQLException {
+    public void adicionar(Proprietarios proprietario) throws SQLException, ParseException {
         String sql = "INSERT INTO PROPRIETARIOS (pro_nome,pro_rg,pro_cpf,cel_numero,tel_numero,pro_nascimento,end_id) VALUES\n"
                 + "(?,?,?,?,?,?,?)";
         try {
@@ -49,6 +50,7 @@ public class ProprietarioDAO {
             EnderecoDAO edao = new EnderecoDAO();
             edao.removeError();
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
+            
         }
     }
 

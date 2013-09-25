@@ -13,6 +13,8 @@ import Modelo.Proprietarios;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -380,6 +382,8 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -416,7 +420,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTRG;
     // End of variables declaration//GEN-END:variables
 
-    private void limpar() {
+    public void limpar() {
         jTBairro.setText("");
         jFTCEP.setText("");
         jFTCPF.setText("");
@@ -429,6 +433,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jFTTelefone.setText("");
         jCBUF.setSelectedIndex(1);
         jCBCidade.removeAllItems();
+        jDCNascimento.setDate(null);
     }
 
     public boolean verifica(Proprietarios proprietario) {
@@ -450,5 +455,6 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jLBairro.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLNumero.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLRG.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jDCNascimento.setDate(null);
     }
 }

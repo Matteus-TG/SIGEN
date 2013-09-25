@@ -358,7 +358,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     + proprietario.getEndereco().getEnd_complemento() + ").", 0, 5);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Erro: \n"+ex);
         }
     }//GEN-LAST:event_jBPesquisarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
