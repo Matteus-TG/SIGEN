@@ -2,14 +2,12 @@ package Interfaces;
 
 import DAO.ProprietarioDAO;
 import Modelo.Proprietarios;
-
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
@@ -21,14 +19,13 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
 
     ProprietarioDAO pdao;
     List<Proprietarios> proprietarios;//List de uma classe do modelo para utilização na tabela;
-    ListSelectionModel lsmProprietario;
     DefaultTableModel tmProprietario = new DefaultTableModel(null, new String[]{"Nome", "CPF", "RG", "Telefone", "Celular", "Endereço"});
     //definição das colunas da tabela
 
     public Listar_Proprietarios() throws ParseException {
         super("SIGEN - Listagem de Proprietários");
         initComponents();
-       MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+        MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
         maskCPF.install(jFTCPF);
     }
 
@@ -319,14 +316,51 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTNomeKeyTyped
 
     private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (tabela.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "Selecione um cadastro a ser alterado.");
+            } else {
+                try {
+                    Alterar_Proprietario ap = new Alterar_Proprietario(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
+                    ap.setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: " + ex);
+        }
     }
 // Variables declaration - do not modify//GEN-LAST:event_jBAtualizarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        
-    }//GEN-LAST:event_jBPesquisarActionPerformed
+        try {
+            while (tmProprietario.getRowCount() > 0) {
+                tmProprietario.removeRow(0);
+            }
+            jRBNome.setSelected(false);
+            jTNome.setText("");
+            pdao = new ProprietarioDAO();
+            Proprietarios proprietario = pdao.listarCPF(jFTCPF.getText());
 
+            tmProprietario.addRow(new String[]{null, null, null, null});
+            tmProprietario.setValueAt(proprietario.getPro_nome(), 0, 0);
+            tmProprietario.setValueAt(proprietario.getPro_cpf(), 0, 1);
+            tmProprietario.setValueAt(proprietario.getPro_rg(), 0, 2);
+            tmProprietario.setValueAt(proprietario.getTel_numero(), 0, 3);
+            tmProprietario.setValueAt(proprietario.getCel_numero(), 0, 4);
+            tmProprietario.setValueAt(proprietario.getEndereco().getEnd_logradouro() + " - "
+                    + proprietario.getEndereco().getEnd_numero() + ". "
+                    + proprietario.getEndereco().getCidade().getCid_nome() + ", "
+                    + proprietario.getEndereco().getCidade().getEstado().getEst_sigla() + " - "
+                    + proprietario.getEndereco().getEnd_bairro() + ". CEP: "
+                    + proprietario.getEndereco().getEnd_cep() + " ("
+                    + proprietario.getEndereco().getEnd_complemento() + ").", 0, 5);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBPesquisarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizar;
     private javax.swing.JButton jBExcluir;
