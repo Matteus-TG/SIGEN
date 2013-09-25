@@ -92,7 +92,7 @@ public class TumuloDAO {
     public List<Quadras> listarQuadras() {
         //METODO CORRRETO - NAO DELETAR
         List<Quadras> quadras = new ArrayList<>();
-        String sql = "select quadras.tum_quadra from quadras inner join letras on "
+        String sql = "select distinct quadras.tum_quadra from quadras inner join letras on "
                 + "quadras.tum_quadra = letras.let_quadra inner join chapas on"
                 + " letras.let_codigo = chapas.cha_letra where chapas.pro_codigo IS NULL";
         try {
@@ -112,10 +112,11 @@ public class TumuloDAO {
         }
         return quadras;
     }
-        public List<Quadras> listarQuadrasVendidas() {
+
+    public List<Quadras> listarQuadrasVendidas() {
         //METODO CORRRETO - NAO DELETAR
         List<Quadras> quadras = new ArrayList<>();
-        String sql = "select quadras.tum_quadra from quadras inner join letras on "
+        String sql = "select distinct quadras.tum_quadra from quadras inner join letras on "
                 + "quadras.tum_quadra = letras.let_quadra inner join chapas on"
                 + " letras.let_codigo = chapas.cha_letra where chapas.pro_codigo IS NOT NULL";
         try {
@@ -214,36 +215,28 @@ public class TumuloDAO {
     }
 
     public List<Chapas> listarChapasVendidas(int aux, String aux2) {
-        System.out.println("2");
         List<Chapas> chapas = new ArrayList<>();
         String sql = "  SELECT CHA_CHAPA,PRO_CODIGO,LETRAS.LET_LETRA,TUM_QUADRA FROM CHAPAS INNER JOIN LETRAS ON \n"
                 + "                CHAPAS.CHA_LETRA = LETRAS.LET_CODIGO\n"
                 + "                inner join quadras on letras.let_quadra = quadras.tum_quadra "
                 + "WHERE CHAPAS.PRO_CODIGO IS NOT NULL AND CHAPAS.CHA_LETRA = " + aux + " AND LETRAS.LET_QUADRA = '" + aux2 + "'";
-System.out.println("3");
-System.out.println(sql);
         try {
             PreparedStatement pstmt = this.conexao.prepareStatement(sql);
-System.out.println("4");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                System.out.println("5");
                 Quadras quadra = new Quadras();
                 Letras letra = new Letras();
                 Chapas chapa = new Chapas();
-System.out.println("6");
                 quadra.setQuadra(rs.getString("tum_quadra"));
                 letra.setQuadra(quadra);
                 letra.setLetra(rs.getString("let_letra"));
                 chapa.setChapa(rs.getString("cha_chapa"));
                 chapa.setLetra(letra);
                 chapas.add(chapa);
-                System.out.println("7");
             }
             rs.close();
             pstmt.close();
-            System.out.println("8");
         } catch (SQLException e) {
             e.printStackTrace();
         }

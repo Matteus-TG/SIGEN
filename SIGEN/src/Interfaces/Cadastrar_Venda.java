@@ -13,9 +13,11 @@ import Modelo.Proprietarios;
 import Modelo.Quadras;
 import Modelo.Vendas;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -280,18 +282,25 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
             Vendas venda = new Vendas();
             Proprietarios proprietario = new Proprietarios();
             Chapas chapa = new Chapas();
-            proprietario.setPro_codigo(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
             tdao = new TumuloDAO();
             vdao = new VendaDAO();
             chapa.setCodigo(tdao.getTomb(String.valueOf(jCBQuadra.getSelectedItem()),
                     String.valueOf(jCBLetra.getSelectedItem()),
                     String.valueOf(jCBChapa.getSelectedItem())));
 
-            venda.setProprietario(proprietario);
-            venda.setChapa(chapa);
-            venda.setVen_data(jDCData.getDate());
-            tdao.sellTomb(venda.getProprietario().getPro_codigo(), venda.getChapa().getCodigo());
-            vdao.adicionar(venda);
+
+
+
+            if (verifica(jTCliente.getText(), jDCData.getDate())) {
+                proprietario.setPro_codigo(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
+                venda.setProprietario(proprietario);
+                venda.setChapa(chapa);
+                venda.setVen_data(jDCData.getDate());
+                vdao.adicionar(venda);
+                tdao.sellTomb(venda.getProprietario().getPro_codigo(), venda.getChapa().getCodigo());
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados obrigatórios (campos em negrito) faltando, por favor preencher corretamente.");
+            }
             jCBLetra.removeAllItems();
             jCBChapa.removeAllItems();
             jCBQuadra.removeAllItems();
@@ -321,12 +330,9 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
         String aux = String.valueOf(jCBQuadra.getSelectedItem());
         String aux2 = String.valueOf(jCBLetra.getSelectedItem());
         jCBChapa.removeAllItems();
-        System.out.println("1");
         tdao = new TumuloDAO();
         tumulosChapas = tdao.listarChapas(tdao.pegaIDLetra(aux, aux2), aux);
-        System.out.println("9");
         for (int i = 0; i < tumulosChapas.size(); i++) {
-            System.out.println("10");
             jCBChapa.addItem(tumulosChapas.get(i).getChapa());
         }
     }//GEN-LAST:event_jCBLetraActionPerformed
@@ -359,5 +365,13 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
         }
         jDCData.setDate(null);
         vendas = null;
+    }
+
+    private boolean verifica(String cliente, Date data) {
+        if ((cliente.equals("")) || data == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

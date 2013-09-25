@@ -12,11 +12,11 @@ import java.util.Date;
  */
 public class Funcionarios {
 
-    public int getFun_codigo() {
+    public Integer getFun_codigo() {
         return fun_codigo;
     }
 
-    public void setFun_codigo(int fun_codigo) {
+    public void setFun_codigo(Integer fun_codigo) {
         this.fun_codigo = fun_codigo;
     }
 
@@ -83,7 +83,7 @@ public class Funcionarios {
     public void setCel_numero(String cel_numero) {
         this.cel_numero = cel_numero;
     }
-    private int fun_codigo;
+    private Integer fun_codigo;
     private Enderecos endereco;
     private String fun_nome;
     private Date fun_data_cadastro;

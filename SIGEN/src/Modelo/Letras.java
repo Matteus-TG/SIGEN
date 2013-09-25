@@ -26,14 +26,14 @@ public class Letras {
         this.quadra = quadra;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
     private String letra;
     private Quadras quadra;
-    private int codigo;
+    private Integer codigo;
 }

@@ -294,43 +294,41 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBAtualizarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-           try {
-                jRBNome.setSelected(false);
-                jTNome.setText("");
+        try {
+            jRBNome.setSelected(false);
+            jTNome.setText("");
 
-                fdao = new FuncionarioDAO();
-                Funcionarios funcionario = fdao.listarCPF(jFTCPF.getText());
-                String endereco;
+            fdao = new FuncionarioDAO();
+            Funcionarios funcionario = fdao.listarCPF(jFTCPF.getText());
+            String endereco;
 
-                while (tmFuncionario.getRowCount() > 0) {
-                    tmFuncionario.removeRow(0);
-                }
+            while (tmFuncionario.getRowCount() > 0) {
+                tmFuncionario.removeRow(0);
+            }
 
-                String[] linha = new String[]{null, null, null, null};
-                for (int i = 0; i < funcionarios.size(); i++) {
-                    endereco = funcionarios.get(i).getEndereco().getEnd_logradouro() + " - "
-                            + funcionarios.get(i).getEndereco().getEnd_numero() + ". "
-                            + funcionarios.get(i).getEndereco().getCidade().getCid_nome() + ", "
-                            + funcionarios.get(i).getEndereco().getCidade().getEstado().getEst_sigla() + " - "
-                            + funcionarios.get(i).getEndereco().getEnd_bairro() + ". CEP: "
-                            + funcionarios.get(i).getEndereco().getEnd_cep() + " ("
-                            + funcionarios.get(i).getEndereco().getEnd_complemento() + ").";
+            String[] linha = new String[]{null, null, null, null};
+            for (int i = 0; i < funcionarios.size(); i++) {
+                endereco = funcionarios.get(i).getEndereco().getEnd_logradouro() + " - "
+                        + funcionarios.get(i).getEndereco().getEnd_numero() + ". "
+                        + funcionarios.get(i).getEndereco().getCidade().getCid_nome() + ", "
+                        + funcionarios.get(i).getEndereco().getCidade().getEstado().getEst_sigla() + " - "
+                        + funcionarios.get(i).getEndereco().getEnd_bairro() + ". CEP: "
+                        + funcionarios.get(i).getEndereco().getEnd_cep() + " ("
+                        + funcionarios.get(i).getEndereco().getEnd_complemento() + ").";
 
-                    tmFuncionario.addRow(linha);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_nome(), i, 0);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_data_cadastro(), i, 1);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_ctps(), i, 2);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_cpf(), i, 3);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getFun_rg(), i, 4);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getTel_numero(), i, 5);
-                    tmFuncionario.setValueAt(funcionarios.get(i).getCel_numero(), i, 6);
-                    tmFuncionario.setValueAt(endereco, i, 7);
-                }
-           }catch(SQLException ex){
-               
-           }
+                tmFuncionario.addRow(linha);
+                tmFuncionario.setValueAt(funcionarios.get(i).getFun_nome(), i, 0);
+                tmFuncionario.setValueAt(funcionarios.get(i).getFun_data_cadastro(), i, 1);
+                tmFuncionario.setValueAt(funcionarios.get(i).getFun_ctps(), i, 2);
+                tmFuncionario.setValueAt(funcionarios.get(i).getFun_cpf(), i, 3);
+                tmFuncionario.setValueAt(funcionarios.get(i).getFun_rg(), i, 4);
+                tmFuncionario.setValueAt(funcionarios.get(i).getTel_numero(), i, 5);
+                tmFuncionario.setValueAt(funcionarios.get(i).getCel_numero(), i, 6);
+                tmFuncionario.setValueAt(endereco, i, 7);
+            }
+        } catch (SQLException ex) {
+        }
     }//GEN-LAST:event_jBPesquisarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizar;
     private javax.swing.JButton jBExcluir;

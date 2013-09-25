@@ -10,11 +10,11 @@ package Modelo;
  */
 public class Chapas {
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -41,7 +41,7 @@ public class Chapas {
     public void setChapa(String chapa) {
         this.chapa = chapa;
     }
-    private int codigo;
+    private Integer codigo;
     private Proprietarios proprietario;
     private Letras letra;
     private String chapa;

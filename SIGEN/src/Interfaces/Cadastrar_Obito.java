@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -453,8 +454,14 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             obito.setObi_pai(jTFiliacaoP.getText());
             obito.setObi_medico(jTMedico.getText());
             obito.setObi_causa_morte(jTCausa.getText());
-            odao.adicionar(obito);
-            limpar();
+
+            if (verifica(obito)) {
+                odao.adicionar(obito);
+                limpar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Atenção, todos os campos (com exceção da filiação) são obrigatórios, favor verificar e preencher o formulário corretamente.");
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Cadastrar_Obito.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -548,5 +555,18 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jTFiliacaoM.setText("");
         jTCausa.setText("");
         jDCData.setDate(null);
+    }
+
+    private boolean verifica(Obitos obito) {
+        if (((((((((((obito.getChapa().getCodigo() == null) || obito.getObi_nome().equals(""))
+                || obito.getObi_idade().equals("")) || obito.getCidade().getCid_codigo() == null)
+                || obito.getObi_protocolo().equals("")) || obito.getObi_guia().equals("")))
+                || new java.sql.Date(obito.getObi_data().getTime()) == null) || obito.getObi_numero_documento().equals(""))
+                || obito.getObi_medico().equals(""))
+                || obito.getObi_causa_morte().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

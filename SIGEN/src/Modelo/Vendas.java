@@ -13,7 +13,7 @@ import java.util.Date;
 public class Vendas {
 
     private Chapas chapa;
-    private int ven_codigo;
+    private Integer ven_codigo;
     private Date ven_data;
     private Proprietarios proprietario;
 
@@ -25,11 +25,11 @@ public class Vendas {
         this.chapa = chapa;
     }
 
-    public int getVen_codigo() {
+    public Integer getVen_codigo() {
         return ven_codigo;
     }
 
-    public void setVen_codigo(int ven_codigo) {
+    public void setVen_codigo(Integer ven_codigo) {
         this.ven_codigo = ven_codigo;
     }
 

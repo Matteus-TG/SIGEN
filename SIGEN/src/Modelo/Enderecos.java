@@ -10,7 +10,7 @@ package Modelo;
  */
 public class Enderecos {
 
-    private int end_id;
+    private Integer end_id;
     private String end_cep;
     private String end_complemento;
     private String end_bairro;
@@ -18,11 +18,11 @@ public class Enderecos {
     private String end_numero;
     private Cidades cidade;
 
-    public int getEnd_id() {
+    public Integer getEnd_id() {
         return end_id;
     }
 
-    public void setEnd_id(int end_id) {
+    public void setEnd_id(Integer end_id) {
         this.end_id = end_id;
     }
 

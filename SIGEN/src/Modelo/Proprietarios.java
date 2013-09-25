@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Proprietarios {
 
-    private int pro_codigo;
+    private Integer pro_codigo;
     private String pro_nome;
     private String pro_rg;
     private Date pro_nascimento;
@@ -37,11 +37,11 @@ public class Proprietarios {
         this.cel_numero = cel_numero;
     }
 
-    public int getPro_codigo() {
+    public Integer getPro_codigo() {
         return pro_codigo;
     }
 
-    public void setPro_codigo(int pro_codigo) {
+    public void setPro_codigo(Integer pro_codigo) {
         this.pro_codigo = pro_codigo;
     }
 

@@ -12,11 +12,11 @@ import java.util.Date;
  */
 public class Obitos {
 
-    public int getObi_codigo() {
+    public Integer getObi_codigo() {
         return obi_codigo;
     }
 
-    public void setObi_codigo(int obi_codigo) {
+    public void setObi_codigo(Integer obi_codigo) {
         this.obi_codigo = obi_codigo;
     }
 
@@ -123,7 +123,7 @@ public class Obitos {
     public void setChapa(Chapas chapa) {
         this.chapa = chapa;
     }
-    private int obi_codigo;
+    private Integer obi_codigo;
     private String obi_protocolo;
     private String obi_guia;
     private String obi_mae;
