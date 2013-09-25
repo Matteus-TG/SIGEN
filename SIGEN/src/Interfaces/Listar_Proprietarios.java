@@ -28,7 +28,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
     public Listar_Proprietarios() throws ParseException {
         super("SIGEN - Listagem de Proprietários");
         initComponents();
-        MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+       MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
         maskCPF.install(jFTCPF);
     }
 
@@ -49,11 +49,10 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
         jLDireitos = new javax.swing.JLabel();
         jLVersao = new javax.swing.JLabel();
         jBExcluir = new javax.swing.JButton();
-        jBAtualizar1 = new javax.swing.JButton();
+        jBAtualizar = new javax.swing.JButton();
         jLCPF = new javax.swing.JLabel();
         jFTCPF = new javax.swing.JFormattedTextField();
-        jFTCPF1 = new javax.swing.JFormattedTextField();
-        jBBotao = new javax.swing.JButton();
+        jBPesquisar = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -96,12 +95,12 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jBAtualizar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBAtualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/editar.png"))); // NOI18N
-        jBAtualizar1.setText("Atualizar");
-        jBAtualizar1.addActionListener(new java.awt.event.ActionListener() {
+        jBAtualizar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/editar.png"))); // NOI18N
+        jBAtualizar.setText("Atualizar");
+        jBAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAtualizar1ActionPerformed(evt);
+                jBAtualizarActionPerformed(evt);
             }
         });
 
@@ -110,14 +109,12 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
 
         jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jFTCPF1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jBBotao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBBotao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
-        jBBotao.setText("Pesquisar");
-        jBBotao.addActionListener(new java.awt.event.ActionListener() {
+        jBPesquisar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
+        jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBBotaoActionPerformed(evt);
+                jBPesquisarActionPerformed(evt);
             }
         });
 
@@ -131,7 +128,9 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 934, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBExcluir))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBExcluir)
+                            .addComponent(jBAtualizar)))
                     .addComponent(jLCabecalho)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,37 +139,29 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jFTCPF1)
+                                .addComponent(jFTCPF)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBBotao))
+                                .addComponent(jBPesquisar))
                             .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLDireitos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLVersao))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(984, Short.MAX_VALUE)
-                    .addComponent(jBAtualizar1)
-                    .addGap(8, 8, 8)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(499, 499, 499)
-                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(500, Short.MAX_VALUE)))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBAtualizar, jBExcluir});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLCabecalho)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFTCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBBotao))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBPesquisar)
                     .addComponent(jLCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -179,25 +170,16 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLDireitos)
                             .addComponent(jLVersao)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addComponent(jBAtualizar)
+                        .addGap(9, 9, 9)
                         .addComponent(jBExcluir)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(156, 156, 156)
-                    .addComponent(jBAtualizar1)
-                    .addContainerGap(472, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(312, 312, 312)
-                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(321, Short.MAX_VALUE)))
         );
 
         pack();
@@ -336,21 +318,20 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTNomeKeyTyped
 
-    private void jBAtualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizar1ActionPerformed
+    private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
         // TODO add your handling code here:
     }
-// Variables declaration - do not modify//GEN-LAST:event_jBAtualizar1ActionPerformed
+// Variables declaration - do not modify//GEN-LAST:event_jBAtualizarActionPerformed
 
-    private void jBBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBotaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBBotaoActionPerformed
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAtualizar1;
-    private javax.swing.JButton jBBotao;
+    private javax.swing.JButton jBAtualizar;
     private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBPesquisar;
     private javax.swing.JFormattedTextField jFTCPF;
-    private javax.swing.JFormattedTextField jFTCPF1;
     private javax.swing.JLabel jLCPF;
     private javax.swing.JLabel jLCabecalho;
     private javax.swing.JLabel jLDireitos;
