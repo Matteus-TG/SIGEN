@@ -24,37 +24,44 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author user
  */
-public class Cria_Carteirinha {
+public class Cria_Carteirinha extends Thread {
 
     private Connection conexao;
+    Integer id;
 
-    public Cria_Carteirinha() {
+    public Cria_Carteirinha(Integer id) {
+        this.id = id;
         this.conexao = ConnectionFactory.getConexao();
     }
 
-    public void gerar(int id) throws JRException, SQLException {
-        String caminho = "C:/SIGEN/XML/Carteirinha_xml.jrxml";
-        JasperDesign desenho = JRXmlLoader.load(caminho);
-        JasperReport relatorio = JasperCompileManager.compileReport(desenho);
+    @Override
+    public void run() {
+        try {
+            String caminho = "C:/SIGEN/XML/Carteirinha_xml.jrxml";
+            JasperDesign desenho = JRXmlLoader.load(caminho);
+            JasperReport relatorio = JasperCompileManager.compileReport(desenho);
 
-        String query = "select proprietarios.pro_nome, proprietarios.pro_rg,proprietarios.pro_cpf,"
-                + "to_char(proprietarios.pro_nascimento,'dd/mm/yyyy'), to_char(current_date,'dd/mm/yyyy') as emissao,"
-                + " cidades.cid_nome || ' - ' || cidades.est_sigla as ENDERECO from proprietarios "
-                + "inner join enderecos on proprietarios.end_id = enderecos.end_id "
-                + "inner join cidades on cidades.cid_codigo = enderecos.cid_codigo "
-                + "where proprietarios.pro_codigo = '" + id + "'";
+            String query = "select proprietarios.pro_nome, proprietarios.pro_rg,proprietarios.pro_cpf,"
+                    + "to_char(proprietarios.pro_nascimento,'dd/mm/yyyy'), to_char(current_date,'dd/mm/yyyy') as emissao,"
+                    + " cidades.cid_nome || ' - ' || cidades.est_sigla as ENDERECO from proprietarios "
+                    + "inner join enderecos on proprietarios.end_id = enderecos.end_id "
+                    + "inner join cidades on cidades.cid_codigo = enderecos.cid_codigo "
+                    + "where proprietarios.pro_codigo = '" + id + "'";
 
-        PreparedStatement pstmt = this.conexao.prepareStatement(query);
-        ResultSet rs = pstmt.executeQuery();
+            PreparedStatement pstmt = this.conexao.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
 
-        JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
+            JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
 
-        HashMap parametros = new HashMap();
-        parametros.put("termo", new Double(10));
+            HashMap parametros = new HashMap();
+            parametros.put("termo", new Double(10));
 
-        JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, jrRS);
-        //JasperPrintManager.printPage(impressao, 0, true);
-        JasperViewer.viewReport(impressao);
+            JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, jrRS);
+            //JasperPrintManager.printPage(impressao, 0, true);
+            JasperViewer.viewReport(impressao);
+        } catch (JRException jr) {
+        } catch (SQLException ex) {
+        }
 
     }
 }

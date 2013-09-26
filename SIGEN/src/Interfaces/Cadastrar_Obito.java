@@ -6,17 +6,21 @@ package Interfaces;
 
 import DAO.EnderecoDAO;
 import DAO.ObitoDAO;
+import DAO.ProprietarioDAO;
 import DAO.TumuloDAO;
 import Modelo.Chapas;
 import Modelo.Cidades;
 import Modelo.Letras;
 import Modelo.Obitos;
+import Modelo.Proprietarios;
 import Modelo.Quadras;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -36,7 +40,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     List<String> cidadeNomes;
     int i;
 
-    public Cadastrar_Obito() {
+    public Cadastrar_Obito() throws ParseException {
         super("SIGEN - Cadastro dos Óbitos");
         initComponents();
         jCBChapa.removeAllItems();
@@ -52,6 +56,8 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             jCBCidade.addItem(cidadeNomes.get(i));
             i++;
         }
+        MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+        maskCPF.install(jFTCPF);
     }
 
     /**
@@ -93,7 +99,6 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jCBUF = new javax.swing.JComboBox();
         jLEstado = new javax.swing.JLabel();
         jLProprietario = new javax.swing.JLabel();
-        jTProprietario = new javax.swing.JTextField();
         jBPesquisar = new javax.swing.JButton();
         jCBLetra = new javax.swing.JComboBox();
         jLQuadra = new javax.swing.JLabel();
@@ -101,6 +106,8 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jLChapa = new javax.swing.JLabel();
         jCBChapa = new javax.swing.JComboBox();
         jCBQuadra = new javax.swing.JComboBox();
+        jLDono = new javax.swing.JLabel();
+        jFTCPF = new javax.swing.JFormattedTextField();
 
         setClosable(true);
 
@@ -159,7 +166,6 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jTCausa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jCBCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCBCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/limpar.png"))); // NOI18N
@@ -199,8 +205,6 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jLProprietario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLProprietario.setText("Proprietário:");
 
-        jTProprietario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         jBPesquisar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
         jBPesquisar.setText("Pesquisar");
@@ -235,6 +239,11 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             }
         });
 
+        jLDono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLDono.setText("    ");
+
+        jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,28 +253,27 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLFiliacaoP)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLFiliacaoM)
-                                .addGap(8, 8, 8)
-                                .addComponent(jTFiliacaoM, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLMedico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTMedico))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBCadastrar)
+                                .addComponent(jLQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLLetra)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLChapa)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLMedico)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLData)
@@ -279,7 +287,10 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                                         .addComponent(jLCausa)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jTCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTFiliacaoP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLFiliacaoP)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTFiliacaoP, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLProtocolo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -305,26 +316,21 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jTIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLProprietario)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(60, 60, 60)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLLetra))
-                                            .addGap(44, 44, 44)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLChapa)
-                                                .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jTProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jBPesquisar))))))))
-                .addGap(26, 26, 26))
+                                    .addComponent(jBCadastrar)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton1))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLFiliacaoM)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTFiliacaoM, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLDono)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLProprietario)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBPesquisar)))
+                .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
                 .addGap(176, 176, 176)
                 .addComponent(jLabel1)
@@ -337,22 +343,22 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLProprietario)
-                    .addComponent(jTProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBPesquisar))
+                    .addComponent(jBPesquisar)
+                    .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLDono)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLQuadra)
                     .addComponent(jLLetra)
                     .addComponent(jLChapa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,15 +404,16 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCausa)
                     .addComponent(jTCausa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(5, 5, 5))
+                    .addComponent(jLabel2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap())))
         );
 
         pack();
@@ -473,18 +480,27 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jCBQuadra.removeAllItems();
 
         tdao = new TumuloDAO();
-        tumulosQuadras = tdao.listarQuadraBYCPF(jTProprietario.getText());
+        tumulosQuadras = tdao.listarQuadraBYCPF(jFTCPF.getText());
 
         for (int i = 0; i < tumulosQuadras.size(); i++) {
             jCBQuadra.addItem(tumulosQuadras.get(i).getQuadra());
         }
+
+        try {
+            ProprietarioDAO pdao = new ProprietarioDAO();
+            Proprietarios proprietario = pdao.listarCPF(jFTCPF.getText());
+            jLDono.setText(proprietario.getPro_nome());
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastrar_Obito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jCBLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBLetraActionPerformed
         jCBChapa.removeAllItems();
         tdao = new TumuloDAO();
         String aux = String.valueOf(jCBQuadra.getSelectedItem());
-        tumulosChapas = tdao.listarQuadrasBYCPF(jTProprietario.getText(),
+        tumulosChapas = tdao.listarQuadrasBYCPF(jFTCPF.getText(),
                 aux,
                 tdao.pegaIDLetra(aux, String.valueOf(jCBLetra.getSelectedItem())));
 
@@ -498,7 +514,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         tdao = new TumuloDAO();
 
         String aux = String.valueOf(jCBQuadra.getSelectedItem());
-        tumulosLetras = tdao.listarLetrasBYCPF(jTProprietario.getText(), aux);
+        tumulosLetras = tdao.listarLetrasBYCPF(jFTCPF.getText(), aux);
         for (int i = 0; i < tumulosLetras.size(); i++) {
             jCBLetra.addItem(tumulosLetras.get(i).getLetra());
         }
@@ -513,10 +529,12 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jCBQuadra;
     private javax.swing.JComboBox jCBUF;
     private com.toedter.calendar.JDateChooser jDCData;
+    private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JLabel jLCausa;
     private javax.swing.JLabel jLChapa;
     private javax.swing.JLabel jLData;
     private javax.swing.JLabel jLDocumento;
+    private javax.swing.JLabel jLDono;
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLFiliacaoM;
     private javax.swing.JLabel jLFiliacaoP;
@@ -540,7 +558,6 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTIdade;
     private javax.swing.JTextField jTMedico;
     private javax.swing.JTextField jTNome;
-    private javax.swing.JTextField jTProprietario;
     private javax.swing.JTextField jTProtocolo;
     // End of variables declaration//GEN-END:variables
 

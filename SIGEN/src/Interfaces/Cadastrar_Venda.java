@@ -45,15 +45,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
     public Cadastrar_Venda() {
         super("SIGEN - Cadastro das Vendas de Túmulos");
         initComponents();
-
-        jCBLetra.removeAllItems();
-        jCBChapa.removeAllItems();
-        jCBQuadra.removeAllItems();
-        tdao = new TumuloDAO();
-        tumulosQuadras = tdao.listarQuadras();
-        for (int i = 0; i < tumulosQuadras.size(); i++) {
-            jCBQuadra.addItem(tumulosQuadras.get(i).getQuadra());
-        }
+        preencheQuadra();
     }
 
     /**
@@ -316,25 +308,11 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
     private void jCBQuadraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBQuadraActionPerformed
-        jCBLetra.removeAllItems();
-        tdao = new TumuloDAO();
-
-        String aux = String.valueOf(jCBQuadra.getSelectedItem());
-        tumulosLetras = tdao.listarLetras(aux);
-        for (int i = 0; i < tumulosLetras.size(); i++) {
-            jCBLetra.addItem(tumulosLetras.get(i).getLetra());
-        }
+        preencheLetra();
     }//GEN-LAST:event_jCBQuadraActionPerformed
 
     private void jCBLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBLetraActionPerformed
-        String aux = String.valueOf(jCBQuadra.getSelectedItem());
-        String aux2 = String.valueOf(jCBLetra.getSelectedItem());
-        jCBChapa.removeAllItems();
-        tdao = new TumuloDAO();
-        tumulosChapas = tdao.listarChapas(tdao.pegaIDLetra(aux, aux2), aux);
-        for (int i = 0; i < tumulosChapas.size(); i++) {
-            jCBChapa.addItem(tumulosChapas.get(i).getChapa());
-        }
+        preencheChapa();
     }//GEN-LAST:event_jCBLetraActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCadastrar;
@@ -365,6 +343,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
         }
         jDCData.setDate(null);
         vendas = null;
+        preencheChapa();
     }
 
     private boolean verifica(String cliente, Date data) {
@@ -372,6 +351,40 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
             return false;
         } else {
             return true;
+        }
+    }
+
+    private void preencheQuadra() {
+
+        jCBLetra.removeAllItems();
+        jCBChapa.removeAllItems();
+        jCBQuadra.removeAllItems();
+        tdao = new TumuloDAO();
+        tumulosQuadras = tdao.listarQuadras();
+        for (int i = 0; i < tumulosQuadras.size(); i++) {
+            jCBQuadra.addItem(tumulosQuadras.get(i).getQuadra());
+        }
+    }
+
+    private void preencheLetra() {
+        jCBLetra.removeAllItems();
+        tdao = new TumuloDAO();
+
+        String aux = String.valueOf(jCBQuadra.getSelectedItem());
+        tumulosLetras = tdao.listarLetras(aux);
+        for (int i = 0; i < tumulosLetras.size(); i++) {
+            jCBLetra.addItem(tumulosLetras.get(i).getLetra());
+        }
+    }
+
+    private void preencheChapa() {
+        String aux = String.valueOf(jCBQuadra.getSelectedItem());
+        String aux2 = String.valueOf(jCBLetra.getSelectedItem());
+        jCBChapa.removeAllItems();
+        tdao = new TumuloDAO();
+        tumulosChapas = tdao.listarChapas(tdao.pegaIDLetra(aux, aux2), aux);
+        for (int i = 0; i < tumulosChapas.size(); i++) {
+            jCBChapa.addItem(tumulosChapas.get(i).getChapa());
         }
     }
 }

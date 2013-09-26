@@ -290,6 +290,8 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(Listar_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBAtualizarActionPerformed
 

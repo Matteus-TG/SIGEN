@@ -14,9 +14,9 @@ public class Backup {
         try {
             ProcessBuilder pb;
             Process p;
-            pb = new ProcessBuilder("C:\\Program Files\\PostgreSQL\\9.2\\bin\\pg_dump.exe ",
+            pb = new ProcessBuilder("C:\\Program Files (x86)\\PostgreSQL\\9.2\\bin\\pg_dump.exe ",
                     "-i", "-h", "localhost", "-p", "5432", "-U", "postgres", "-F", "t", "-b", "-v", "-f",
-                    caminho + "\\bkp.sql", "BD_CEMITERIO");
+                    caminho + "\\bkp.sql", "SIGEN");
             pb.environment().put("PGPASSWORD", "senha");
             pb.redirectErrorStream(true);
             p = pb.start();

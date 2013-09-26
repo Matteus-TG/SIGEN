@@ -347,13 +347,12 @@ public class TumuloDAO {
         return chapas;
     }
 
-    public int getTomb(String quadra, String letra, String chapa) {
+    public int getTomb(String quadra, String chapa, String letra) {
         int id = 0;
         String sql = "select chapas.cha_codigo from chapas inner join letras on"
                 + " chapas.cha_letra = letras.let_codigo inner join quadras on"
                 + " letras.let_quadra = quadras.tum_quadra "
                 + "where quadras.tum_quadra = '" + quadra + "' AND letras.let_letra = '" + letra + "' AND chapas.cha_chapa = '" + chapa + "'";
-
         try {
             PreparedStatement pstmt = this.conexao.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();

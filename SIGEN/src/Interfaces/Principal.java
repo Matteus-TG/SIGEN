@@ -325,9 +325,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIListar_VendasActionPerformed
 
     private void jMICadastrar_ObitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_ObitoActionPerformed
-        Cadastrar_Obito co = new Cadastrar_Obito();
-        JPainel.add(co);
-        co.show();
+        try {
+            Cadastrar_Obito co = new Cadastrar_Obito();
+            JPainel.add(co);
+            co.show();
+        } catch (ParseException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMICadastrar_ObitoActionPerformed
 
     private void jMIListar_ObitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_ObitosActionPerformed

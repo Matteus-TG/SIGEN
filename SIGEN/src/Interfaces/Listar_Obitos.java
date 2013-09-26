@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Classes_Auxiliares.Methods;
 import DAO.ObitoDAO;
 import DAO.TumuloDAO;
 import Modelo.Chapas;
@@ -87,7 +88,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jRBCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jRBCliente.setText("Cliente - ");
+        jRBCliente.setText("Nome - Cliente");
         jRBCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBClienteActionPerformed(evt);
@@ -123,11 +124,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jDCFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDCFimPropertyChange(evt);
-            }
-        });
-        jDCFim.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jDCFimKeyTyped(evt);
             }
         });
 
@@ -282,7 +278,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                                 .addComponent(jRBFalecido)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTFalecido, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(94, Short.MAX_VALUE))))
+                        .addContainerGap(48, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +321,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jRBCliente)
                         .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,7 +373,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                     tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                     tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                     tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                     tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                     tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -427,7 +423,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                     tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                     tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                     tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                     tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                     tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -485,7 +481,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                         tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                         tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                         tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                        tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                        tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                         tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                         tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                         tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -537,7 +533,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                     tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                     tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                     tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                     tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                     tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -591,7 +587,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                     tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                     tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                     tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                     tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                     tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -641,7 +637,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                     tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                     tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                     tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                     tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                     tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -671,11 +667,12 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
             try {
                 odao = new ObitoDAO();
+ 
                 obitos = odao.listarTumulo(tdao.getTomb(String.valueOf(jCBQuadra.getSelectedItem()),
                         String.valueOf(jCBChapa.getSelectedItem()),
                         String.valueOf(jCBLetra.getSelectedItem())));
 
-                String tumAux = "6";
+                String tumAux;
 
                 while (tmObito.getRowCount() > 0) {
                     tmObito.removeRow(0);
@@ -697,7 +694,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
                     tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
                     tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(obitos.get(i).getObi_data(), i, 6);
+                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
                     tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
                     tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
                     tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
@@ -741,16 +738,120 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jRBCPF.setSelected(false);
     }//GEN-LAST:event_jTCPFKeyTyped
 
-    private void jDCFimKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDCFimKeyTyped
-        jRBData.setSelected(false);
-    }//GEN-LAST:event_jDCFimKeyTyped
-
     private void jDCInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCInicioPropertyChange
-        jRBData.setSelected(false);
+        if (jRBData.isSelected()) {
+            jRBTumulo.setSelected(false);
+            jRBCliente.setSelected(false);
+            jRBCPF.setSelected(false);
+            jRBFalecido.setSelected(false);
+            jTCPF.setText("");
+            jTCliente.setText("");
+            jTFalecido.setText("");
+            if ((jDCInicio.getDate() == null) || (jDCFim.getDate() == null)) {
+                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data!");
+                jRBData.setSelected(false);
+                while (tmObito.getRowCount() > 0) {
+                    tmObito.removeRow(0);
+                }
+            } else {
+
+                try {
+                    odao = new ObitoDAO();
+                    obitos = odao.listarData(jDCInicio.getDate(), jDCFim.getDate());
+                    String tumAux = "6";
+
+                    while (tmObito.getRowCount() > 0) {
+                        tmObito.removeRow(0);
+                    }
+
+                    String[] linha = new String[]{null, null, null, null};
+
+
+                    for (int i = 0; i < obitos.size(); i++) {
+
+                        tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
+                                + obitos.get(i).getChapa().getChapa() + " Letra: "
+                                + obitos.get(i).getChapa().getLetra().getLetra();
+
+                        tmObito.addRow(linha);
+                        tmObito.setValueAt(obitos.get(i).getProprietario().getPro_nome(), i, 0);
+                        tmObito.setValueAt(obitos.get(i).getObi_nome(), i, 1);
+                        tmObito.setValueAt(obitos.get(i).getObi_idade(), i, 2);
+                        tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
+                        tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
+                        tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
+                        tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
+                        tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
+                        tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
+                        tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
+                        tmObito.setValueAt(obitos.get(i).getObi_medico(), i, 10);
+                        tmObito.setValueAt(obitos.get(i).getObi_causa_morte(), i, 11);
+                        tmObito.setValueAt(tumAux, i, 12);
+
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }//GEN-LAST:event_jDCInicioPropertyChange
 
     private void jDCFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFimPropertyChange
-        jRBData.setSelected(false);
+        if (jRBData.isSelected()) {
+            jRBTumulo.setSelected(false);
+            jRBCliente.setSelected(false);
+            jRBCPF.setSelected(false);
+            jRBFalecido.setSelected(false);
+            jTCPF.setText("");
+            jTCliente.setText("");
+            jTFalecido.setText("");
+            if ((jDCInicio.getDate() == null) || (jDCFim.getDate() == null)) {
+                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data!");
+                jRBData.setSelected(false);
+                while (tmObito.getRowCount() > 0) {
+                    tmObito.removeRow(0);
+                }
+            } else {
+
+                try {
+                    odao = new ObitoDAO();
+                    obitos = odao.listarData(jDCInicio.getDate(), jDCFim.getDate());
+                    String tumAux = "6";
+
+                    while (tmObito.getRowCount() > 0) {
+                        tmObito.removeRow(0);
+                    }
+
+                    String[] linha = new String[]{null, null, null, null};
+
+
+                    for (int i = 0; i < obitos.size(); i++) {
+
+                        tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
+                                + obitos.get(i).getChapa().getChapa() + " Letra: "
+                                + obitos.get(i).getChapa().getLetra().getLetra();
+
+                        tmObito.addRow(linha);
+                        tmObito.setValueAt(obitos.get(i).getProprietario().getPro_nome(), i, 0);
+                        tmObito.setValueAt(obitos.get(i).getObi_nome(), i, 1);
+                        tmObito.setValueAt(obitos.get(i).getObi_idade(), i, 2);
+                        tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
+                        tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
+                        tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
+                        tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
+                        tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
+                        tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
+                        tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
+                        tmObito.setValueAt(obitos.get(i).getObi_medico(), i, 10);
+                        tmObito.setValueAt(obitos.get(i).getObi_causa_morte(), i, 11);
+                        tmObito.setValueAt(tumAux, i, 12);
+
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }//GEN-LAST:event_jDCFimPropertyChange
 
     private void jCBChapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBChapaActionPerformed

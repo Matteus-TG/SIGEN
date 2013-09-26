@@ -11,8 +11,10 @@ import Modelo.Enderecos;
 import Modelo.Estados;
 import Modelo.Funcionarios;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -32,11 +34,15 @@ public class Alterar_funcionario extends javax.swing.JFrame {
     Cidades cidade = new Cidades();
     Estados estado = new Estados();
 
-    public Alterar_funcionario(int ID) throws SQLException {
+    public Alterar_funcionario(int ID) throws SQLException, ParseException {
         super("SIGEN - Alteração de Cadastro dos Funcionários");
 
         this.setResizable(false);
         initComponents();
+        MaskFormatter maskTelefone = new MaskFormatter("(##) ####-####");
+        MaskFormatter maskCelular = new MaskFormatter("(##) #####-####");
+        maskTelefone.install(jFTTelefone);
+        maskCelular.install(jFTCelular);
         setLocationRelativeTo(null);
         fillField(ID);
         preencheCidade();

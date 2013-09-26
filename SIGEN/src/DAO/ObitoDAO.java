@@ -70,7 +70,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where proprietarios.pro_cpf = '" + cpf + "'";
+                + "where proprietarios.pro_cpf = '" + cpf + "' order by obitos.obi_data";
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
@@ -121,7 +121,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where obi_data >= ? AND obi_data <= ?";
+                + "where obi_data >= ? AND obi_data <= ?  order by obitos.obi_data";
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         pstmt.setDate(1, new java.sql.Date(dataI.getTime()));
@@ -174,7 +174,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where obitos.obi_nome ilike '%" + nome + "%'";
+                + "where obitos.obi_nome ilike '%" + nome + "%' order by obitos.obi_data";
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
@@ -225,7 +225,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where proprietarios.pro_nome ilike '%" + nome + "%'";
+                + "where proprietarios.pro_nome ilike '%" + nome + "%' order by obitos.obi_data";
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
@@ -276,8 +276,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where chapas.cha_codigo = " + ID;
-
+                + "where chapas.cha_codigo = " + ID +" order by obitos.obi_data";
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         List<Obitos> obitos = new ArrayList<>();

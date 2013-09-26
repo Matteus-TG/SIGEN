@@ -40,10 +40,10 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         this.setResizable(false);
         initComponents();
         setLocationRelativeTo(null);
-        MaskFormatter maskData = new MaskFormatter("(##) ####-####");
-        MaskFormatter maskData2 = new MaskFormatter("(##) ####-####");
-        maskData.install(jFTTelefone);
-        maskData2.install(jFTCelular);
+        MaskFormatter maskTelefone = new MaskFormatter("(##) ####-####");
+        MaskFormatter maskCelular = new MaskFormatter("(##) #####-####");
+        maskTelefone.install(jFTTelefone);
+        maskCelular.install(jFTCelular);
         fillField(ID);
         preencheCidade();
     }
