@@ -50,7 +50,7 @@ public class ProprietarioDAO {
             EnderecoDAO edao = new EnderecoDAO();
             edao.removeError();
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
-            
+
         }
     }
 

@@ -276,7 +276,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where chapas.cha_codigo = " + ID +" order by obitos.obi_data";
+                + "where chapas.cha_codigo = " + ID + " order by obitos.obi_data";
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         List<Obitos> obitos = new ArrayList<>();

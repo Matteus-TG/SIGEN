@@ -10,11 +10,8 @@ import DAO.VendaDAO;
 import Modelo.Proprietarios;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -56,7 +53,6 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
         jTCliente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        progress = new javax.swing.JProgressBar();
 
         jLabel3.setText("VL Solutions. Todos os direitos reservados.");
 
@@ -99,8 +95,6 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabela);
 
-        progress.setStringPainted(true);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,10 +110,7 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                         .addComponent(jLCabecalho)
                         .addGap(148, 148, 148))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jBImprimir)
-                            .addGap(30, 30, 30)
-                            .addComponent(progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBImprimir)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLCliente)
@@ -139,14 +130,9 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                     .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jBImprimir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jBImprimir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)))
@@ -156,7 +142,7 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClienteKeyTyped
-        
+
         try {
             pdao = new ProprietarioDAO();
             proprietarios = pdao.getVenda("%" + jTCliente.getText() + "%");
@@ -179,11 +165,9 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
-        Cria_Carteirinha cc = new Cria_Carteirinha
-                (proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
+        Cria_Carteirinha cc = new Cria_Carteirinha(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
         cc.start();
     }//GEN-LAST:event_jBImprimirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBImprimir;
     private javax.swing.JLabel jLCabecalho;
@@ -194,7 +178,6 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTCliente;
-    private javax.swing.JProgressBar progress;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

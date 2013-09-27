@@ -667,7 +667,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
             try {
                 odao = new ObitoDAO();
- 
+
                 obitos = odao.listarTumulo(tdao.getTomb(String.valueOf(jCBQuadra.getSelectedItem()),
                         String.valueOf(jCBChapa.getSelectedItem()),
                         String.valueOf(jCBLetra.getSelectedItem())));
