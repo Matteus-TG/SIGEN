@@ -71,7 +71,7 @@ public class ObitoDAO {
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
                 + "where proprietarios.pro_cpf = '" + cpf + "' order by obitos.obi_data";
-
+        System.out.println(sql);
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         List<Obitos> obitos = new ArrayList<>();
@@ -121,7 +121,7 @@ public class ObitoDAO {
                 + " quadras on letras.let_quadra = quadras.tum_quadra inner join"
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
-                + "where obi_data >= ? AND obi_data <= ?  order by obitos.obi_data";
+                + "where obi_data >= '?' AND obi_data <= ?  order by obitos.obi_data";
 
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         pstmt.setDate(1, new java.sql.Date(dataI.getTime()));
@@ -277,6 +277,47 @@ public class ObitoDAO {
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
                 + "where chapas.cha_codigo = " + ID + " order by obitos.obi_data";
+        PreparedStatement pstmt = this.conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        List<Obitos> obitos = new ArrayList<>();
+
+        while (rs.next()) {
+            Obitos obito = new Obitos();
+            Proprietarios proprietario = new Proprietarios();
+            Quadras quadra = new Quadras();
+            Letras letra = new Letras();
+            Chapas chapa = new Chapas();
+            Cidades cidade = new Cidades();
+            proprietario.setPro_nome(rs.getString("pro_nome"));
+            obito.setProprietario(proprietario);
+            obito.setObi_nome(rs.getString("obi_nome"));
+            obito.setObi_idade(rs.getString("obi_idade"));
+            cidade.setCid_nome(rs.getString("cid_nome"));
+            obito.setCidade(cidade);
+            obito.setObi_protocolo(rs.getString("obi_protocolo"));
+            obito.setObi_guia(rs.getString("obi_guia"));
+            obito.setObi_data(rs.getDate("obi_data"));
+            obito.setObi_numero_documento(rs.getString("obi_numero_documento"));
+            obito.setObi_pai(rs.getString("obi_pai"));
+            obito.setObi_mae(rs.getString("obi_mae"));
+            obito.setObi_medico(rs.getString("obi_medico"));
+            obito.setObi_causa_morte(rs.getString("obi_causa_morte"));
+            quadra.setQuadra(rs.getString("tum_quadra"));
+            letra.setLetra(rs.getString("let_letra"));
+            letra.setQuadra(quadra);
+            chapa.setChapa(rs.getString("cha_chapa"));
+            chapa.setLetra(letra);
+            obito.setChapa(chapa);
+            obitos.add(obito);
+        }
+        rs.close();
+        pstmt.close();
+        return obitos;
+    }
+
+    public List<Obitos> listarAvancado(String sql) throws SQLException {
+        sql = sql + " order by obitos.obi_data";
+        System.out.println(sql);
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         List<Obitos> obitos = new ArrayList<>();

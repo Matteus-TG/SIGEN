@@ -32,10 +32,11 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     List<Obitos> obitos;
     ListSelectionModel lsmObitos;
     DefaultTableModel tmObito = new DefaultTableModel(null, new String[]{"Proprietário do Túmulo", "Falecido", "Idade", "Cidade", "Protocolo", "Guia", "Data", "Nº Documento", "Filiação - Pai", "Filiação - Mãe", "Médico", "Causa da Morte", "Tumulo"});
-
     /**
      * Creates new form Listar_Obitos
      */
+    String sql, aux;
+
     public Listar_Obitos() {
         super("SIGEN - Listagem dos Óbitos");
         initComponents();
@@ -48,6 +49,17 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         for (int i = 0; i < tumulosQuadras.size(); i++) {
             jCBQuadra.addItem(tumulosQuadras.get(i).getQuadra());
         }
+        sql = "select proprietarios.pro_nome,obitos.obi_nome,obitos.obi_idade,cidades.cid_nome,\n"
+                + "obitos.obi_protocolo,obitos.obi_guia,obitos.obi_data,obitos.obi_numero_documento\n"
+                + ",obitos.obi_pai,obitos.obi_mae,obitos.obi_medico,obitos.obi_causa_morte,\n"
+                + "chapas.cha_chapa,letras.let_letra,quadras.tum_quadra \n"
+                + "from obitos inner join chapas on obitos.cha_codigo = chapas.cha_codigo \n"
+                + "inner join letras on letras.let_codigo = chapas.cha_letra \n"
+                + "inner join quadras on letras.let_quadra = quadras.tum_quadra \n"
+                + "inner join proprietarios on chapas.pro_codigo = proprietarios.pro_codigo \n"
+                + "inner join cidades on cidades.cid_codigo = obitos.cid_codigo \n"
+                + "where ";
+        aux = sql;
     }
 
     /**
@@ -84,6 +96,8 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jLLetra = new javax.swing.JLabel();
         jCBLetra = new javax.swing.JComboBox();
         jCBQuadra = new javax.swing.JComboBox();
+        jRBAvancado = new javax.swing.JRadioButton();
+        jBAvancado = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -213,6 +227,23 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             }
         });
 
+        jRBAvancado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jRBAvancado.setText("Avançado");
+        jRBAvancado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBAvancadoActionPerformed(evt);
+            }
+        });
+
+        jBAvancado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBAvancado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
+        jBAvancado.setText("Pesquisar");
+        jBAvancado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAvancadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,7 +296,11 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                                         .addGap(19, 19, 19)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jDCFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDCInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+                                    .addComponent(jDCInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                                .addGap(108, 108, 108)
+                                .addComponent(jRBAvancado)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBAvancado))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRBCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -308,7 +343,12 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRBAvancado)
+                            .addComponent(jBAvancado))))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -321,7 +361,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jRBCliente)
                         .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +378,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBClienteActionPerformed
-        if (jRBCliente.isSelected()) {
+        if ((jRBCliente.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
             jRBTumulo.setSelected(false);
             jRBCPF.setSelected(false);
@@ -388,7 +428,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBClienteActionPerformed
 
     private void jTClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClienteKeyTyped
-        if (jRBCliente.isSelected()) {
+        if ((jRBCliente.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
             jRBTumulo.setSelected(false);
             jRBCPF.setSelected(false);
@@ -440,7 +480,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTClienteKeyTyped
 
     private void jRBDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBDataActionPerformed
-        if (jRBData.isSelected()) {
+        if ((jRBData.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBTumulo.setSelected(false);
             jRBCliente.setSelected(false);
             jRBCPF.setSelected(false);
@@ -498,7 +538,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBDataActionPerformed
 
     private void jRBCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBCPFActionPerformed
-        if (jRBCPF.isSelected()) {
+        if ((jRBCPF.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
             jRBCliente.setSelected(false);
             jRBTumulo.setSelected(false);
@@ -553,7 +593,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTCPFActionPerformed
 
     private void jTFalecidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFalecidoKeyTyped
-        if (jRBFalecido.isSelected()) {
+        if ((jRBFalecido.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
             jRBCliente.setSelected(false);
             jRBCPF.setSelected(false);
@@ -604,7 +644,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFalecidoKeyTyped
 
     private void jRBFalecidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBFalecidoActionPerformed
-        if (jRBFalecido.isSelected()) {
+        if ((jRBFalecido.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
             jRBCliente.setSelected(false);
             jRBCPF.setSelected(false);
@@ -654,7 +694,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBFalecidoActionPerformed
 
     private void jRBTumuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBTumuloActionPerformed
-        if (jRBTumulo.isSelected()) {
+        if ((jRBTumulo.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
             jRBCliente.setSelected(false);
             jRBCPF.setSelected(false);
@@ -739,7 +779,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTCPFKeyTyped
 
     private void jDCInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCInicioPropertyChange
-        if (jRBData.isSelected()) {
+        if ((jRBData.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBTumulo.setSelected(false);
             jRBCliente.setSelected(false);
             jRBCPF.setSelected(false);
@@ -797,7 +837,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDCInicioPropertyChange
 
     private void jDCFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFimPropertyChange
-        if (jRBData.isSelected()) {
+        if ((jRBData.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBTumulo.setSelected(false);
             jRBCliente.setSelected(false);
             jRBCPF.setSelected(false);
@@ -816,7 +856,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                 try {
                     odao = new ObitoDAO();
                     obitos = odao.listarData(jDCInicio.getDate(), jDCFim.getDate());
-                    String tumAux = "6";
+                    String tumAux;
 
                     while (tmObito.getRowCount() > 0) {
                         tmObito.removeRow(0);
@@ -857,7 +897,56 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     private void jCBChapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBChapaActionPerformed
         jRBTumulo.setSelected(false);
     }//GEN-LAST:event_jCBChapaActionPerformed
+
+    private void jRBAvancadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBAvancadoActionPerformed
+    }//GEN-LAST:event_jRBAvancadoActionPerformed
+
+    private void jBAvancadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvancadoActionPerformed
+        if (jRBAvancado.isSelected()) {
+            if (verifica()) {
+                try {
+                    odao = new ObitoDAO();
+                    obitos = odao.listarAvancado(sql);
+                    String tumAux;
+
+                    while (tmObito.getRowCount() > 0) {
+                        tmObito.removeRow(0);
+                    }
+
+                    String[] linha = new String[]{null, null, null, null};
+
+
+                    for (int i = 0; i < obitos.size(); i++) {
+
+                        tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
+                                + obitos.get(i).getChapa().getChapa() + " Letra: "
+                                + obitos.get(i).getChapa().getLetra().getLetra();
+
+                        tmObito.addRow(linha);
+                        tmObito.setValueAt(obitos.get(i).getProprietario().getPro_nome(), i, 0);
+                        tmObito.setValueAt(obitos.get(i).getObi_nome(), i, 1);
+                        tmObito.setValueAt(obitos.get(i).getObi_idade(), i, 2);
+                        tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
+                        tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
+                        tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
+                        tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
+                        tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
+                        tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
+                        tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
+                        tmObito.setValueAt(obitos.get(i).getObi_medico(), i, 10);
+                        tmObito.setValueAt(obitos.get(i).getObi_causa_morte(), i, 11);
+                        tmObito.setValueAt(tumAux, i, 12);
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            sql = aux;
+        }
+    }//GEN-LAST:event_jBAvancadoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAvancado;
     private javax.swing.JComboBox jCBChapa;
     private javax.swing.JComboBox jCBLetra;
     private javax.swing.JComboBox jCBQuadra;
@@ -871,6 +960,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JRadioButton jRBAvancado;
     private javax.swing.JRadioButton jRBCPF;
     private javax.swing.JRadioButton jRBCliente;
     private javax.swing.JRadioButton jRBData;
@@ -884,4 +974,49 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFalecido;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+
+    private boolean verifica() {
+        if (((!jRBCliente.isSelected()) && (!jRBFalecido.isSelected())) && (!jRBData.isSelected())) {
+            JOptionPane.showMessageDialog(null, "Favor, escolher ao menos uma opção.");
+            return false;
+        }
+        if (((jRBCliente.isSelected()) && (!jRBFalecido.isSelected())) && (!jRBData.isSelected())) {
+            sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
+            return true;
+        }
+        if (((jRBFalecido.isSelected()) && (!jRBCliente.isSelected())) && (!jRBData.isSelected())) {
+            sql = sql + " obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
+            return true;
+        }
+        if (((jRBData.isSelected()) && (!jRBCliente.isSelected())) && (!jRBFalecido.isSelected())) {
+            sql = sql + " obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+            return true;
+        }
+        if (((jRBCliente.isSelected()) && (jRBFalecido.isSelected())) && (jRBData.isSelected() == false)) {
+            sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
+            sql = sql + " AND obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
+            return true;
+        }
+        if (((jRBCliente.isSelected()) && (jRBData.isSelected()) && (jRBFalecido.isSelected() == false))) {
+            sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
+            sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+            return true;
+        }
+        if (((jRBFalecido.isSelected()) && (jRBData.isSelected())) && (jRBCliente.isSelected() == false)) {
+            sql = sql + " obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
+            sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+            return true;
+        }
+        if (((jRBCliente.isSelected()) && (jRBFalecido.isSelected())) && (jRBData.isSelected())) {
+            sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
+            sql = sql + " AND obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
+            sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+            return true;
+        }
+        return false;
+    }
 }

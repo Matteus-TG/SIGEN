@@ -451,7 +451,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         jTComplemento.setText(proprietario.getEndereco().getEnd_complemento());
         jFTCelular.setText(proprietario.getCel_numero());
         jFTTelefone.setText(proprietario.getTel_numero());
-
+        jDCNascimento.setDate(proprietario.getPro_nascimento());
         for (int i = 0; i < 27; i++) {
             if (proprietario.getEndereco().getCidade().getEstado().getEst_sigla().equals(jCBUF.getItemAt(i))) {
                 jCBUF.setSelectedIndex(i);
