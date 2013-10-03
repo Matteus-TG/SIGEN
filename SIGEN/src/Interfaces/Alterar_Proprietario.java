@@ -81,8 +81,8 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         jTLogradouro = new javax.swing.JTextField();
         jTNumero = new javax.swing.JTextField();
         jTBairro = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
+        jLEmpresa = new javax.swing.JLabel();
         jTCPF = new javax.swing.JTextField();
         jTRG = new javax.swing.JTextField();
         jFTTelefone = new javax.swing.JFormattedTextField();
@@ -178,9 +178,9 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
 
         jTBairro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel3.setText("Versão: 1.4.6");
+        jLVersao.setText("Versão: 1.4.6");
 
-        jLabel2.setText("VL Solutions. Todos os direitos reservados.");
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
 
         jTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -197,9 +197,9 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
+                .addComponent(jLEmpresa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(jLVersao)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
@@ -325,8 +325,8 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
                     .addComponent(jBLimpar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)))
+                    .addComponent(jLEmpresa)
+                    .addComponent(jLVersao)))
         );
 
         pack();
@@ -375,13 +375,13 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
                 proprietarioAux.setPro_codigo(proprietario.getPro_codigo());
                 proprietarioAux.setPro_nascimento(jDCNascimento.getDate());
                 pdao.editar(proprietarioAux);
-                JOptionPane.showMessageDialog(null, "Cliente editado com Sucesso!");
+                JOptionPane.showMessageDialog(null, "Cliente editado com Sucesso.");
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Alguns campos obrigatórios estão faltando. Por favor, preenche-los!");
+            JOptionPane.showMessageDialog(null, "Alguns campos obrigatórios estão faltando. Por favor, preenche-los.");
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
@@ -419,15 +419,15 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
     private javax.swing.JLabel jLCelular;
     private javax.swing.JLabel jLCidade;
     private javax.swing.JLabel jLComplemento;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLLogradouro;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLNumero;
     private javax.swing.JLabel jLRG;
     private javax.swing.JLabel jLTelefone;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTCEP;
     private javax.swing.JTextField jTCPF;

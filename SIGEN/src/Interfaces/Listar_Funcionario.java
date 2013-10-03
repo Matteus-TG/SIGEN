@@ -5,14 +5,10 @@
 package Interfaces;
 
 import DAO.FuncionarioDAO;
-import DAO.ProprietarioDAO;
-import Modelo.Chapas;
 import Modelo.Funcionarios;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -53,11 +49,11 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
         tabela = new javax.swing.JTable();
         jBAtualizar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jFTCPF = new javax.swing.JFormattedTextField();
         jBPesquisar = new javax.swing.JButton();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -100,10 +96,6 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLabel3.setText("Versão: 1.4.6");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("CPF:");
 
@@ -117,6 +109,10 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                 jBPesquisarActionPerformed(evt);
             }
         });
+
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,9 +141,9 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                             .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
+                .addComponent(jLEmpresa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3))
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBAtualizar, jBExcluir});
@@ -175,10 +171,10 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)))
+                    .addComponent(jLEmpresa)
+                    .addComponent(jLVersao)))
         );
 
         pack();
@@ -219,7 +215,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                     tmFuncionario.setValueAt(endereco, i, 7);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jRBNomeActionPerformed
@@ -259,7 +255,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                     tmFuncionario.setValueAt(endereco, i, 7);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jTNomeKeyTyped
@@ -270,7 +266,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             try {
                 fdao = new FuncionarioDAO();
                 fdao.remover(funcionarios.get(tabela.getSelectedRow()).getFun_codigo());
-                JOptionPane.showMessageDialog(null, "Cliente deletado com Sucesso!");
+                JOptionPane.showMessageDialog(null, "Cliente deletado com Sucesso.");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro:\n" + ex);
             }
@@ -291,7 +287,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
         } catch (ParseException ex) {
-            Logger.getLogger(Listar_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBAtualizarActionPerformed
 
@@ -329,6 +325,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                 tmFuncionario.setValueAt(endereco, i, 7);
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBPesquisarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,9 +333,9 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JFormattedTextField jFTCPF;
+    private javax.swing.JLabel jLEmpresa;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRBNome;
     private javax.swing.JScrollPane jScrollPane1;

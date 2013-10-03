@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -60,7 +61,9 @@ public class Cria_Carteirinha extends Thread {
             //JasperPrintManager.printPage(impressao, 0, true);
             JasperViewer.viewReport(impressao);
         } catch (JRException jr) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + jr);
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
 
     }

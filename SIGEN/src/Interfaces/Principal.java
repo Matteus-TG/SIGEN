@@ -10,9 +10,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,6 +96,11 @@ public class Principal extends javax.swing.JFrame {
 
         jMILogoff.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMILogoff.setText("Logoff");
+        jMILogoff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMILogoffActionPerformed(evt);
+            }
+        });
         jMArquivo.add(jMILogoff);
 
         jMenu.add(jMArquivo);
@@ -276,7 +280,7 @@ public class Principal extends javax.swing.JFrame {
             JPainel.add(cp);
             cp.show();
         } catch (ParseException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
 
     }//GEN-LAST:event_jMICadastrar_ClientesActionPerformed
@@ -287,7 +291,7 @@ public class Principal extends javax.swing.JFrame {
             JPainel.add(lp);
             lp.show();
         } catch (ParseException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jMIListar_clientesActionPerformed
 
@@ -297,6 +301,7 @@ public class Principal extends javax.swing.JFrame {
             JPainel.add(cf);
             cf.show();
         } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jMICadastrar_FuncionariosActionPerformed
 
@@ -330,7 +335,7 @@ public class Principal extends javax.swing.JFrame {
             JPainel.add(co);
             co.show();
         } catch (ParseException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jMICadastrar_ObitoActionPerformed
 
@@ -379,10 +384,16 @@ public class Principal extends javax.swing.JFrame {
                 igd.EnviaBackup(caminho);
             }
         } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
 
     }//GEN-LAST:event_jMIBPONActionPerformed
+
+    private void jMILogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILogoffActionPerformed
+        Login lg = new Login();
+        lg.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jMILogoffActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane JPainel;
     private javax.swing.JMenu jMArquivo;

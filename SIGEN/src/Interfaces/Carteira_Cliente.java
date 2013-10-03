@@ -10,6 +10,7 @@ import DAO.VendaDAO;
 import Modelo.Proprietarios;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,12 +48,12 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLCabecalho = new javax.swing.JLabel();
         jBImprimir = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLCliente = new javax.swing.JLabel();
         jTCliente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         jLabel3.setText("VL Solutions. Todos os direitos reservados.");
 
@@ -71,10 +72,6 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                 jBImprimirActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLabel6.setText("Versão: 1.4.6");
 
         jLCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLCliente.setText("Cliente:");
@@ -95,14 +92,14 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabela);
 
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -118,6 +115,10 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                                 .addComponent(jTCliente))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,10 +133,10 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBImprimir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)))
+                    .addComponent(jLVersao)
+                    .addComponent(jLEmpresa)))
         );
 
         pack();
@@ -157,6 +158,7 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                 tmProprietario.setValueAt(proprietarios.get(i).getPro_rg(), i, 2);
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jTClienteKeyTyped
 
@@ -172,10 +174,10 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBImprimir;
     private javax.swing.JLabel jLCabecalho;
     private javax.swing.JLabel jLCliente;
+    private javax.swing.JLabel jLEmpresa;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTCliente;
     private javax.swing.JTable tabela;

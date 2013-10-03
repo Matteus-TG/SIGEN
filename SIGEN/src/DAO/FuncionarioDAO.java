@@ -44,7 +44,7 @@ public class FuncionarioDAO {
 
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!");
+            JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso.");
         } catch (SQLException ex) {
             EnderecoDAO edao = new EnderecoDAO();
             edao.removeError();

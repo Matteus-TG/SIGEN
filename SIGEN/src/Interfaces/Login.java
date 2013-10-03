@@ -7,8 +7,6 @@ package Interfaces;
 import DAO.LoginDAO;
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,8 +46,8 @@ public class Login extends javax.swing.JFrame {
         jBEntrar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jPFSenha = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("frame"); // NOI18N
@@ -90,9 +88,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("VL Solutions. Todos os direitos reservados.");
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
 
-        jLabel2.setText("Versão: 1.4.6");
+        jLVersao.setText("Versão: 1.4.6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,34 +99,30 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jLLogin)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLSenha)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jPFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(5, 5, 5)
+                                .addComponent(jLLogin)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(jBEntrar)
-                                .addGap(43, 43, 43)
-                                .addComponent(jBCancelar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLCabecalho)))
-                        .addGap(0, 10, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLSenha)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jBEntrar)
+                        .addGap(43, 43, 43)
+                        .addComponent(jBCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLCabecalho)))
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCancelar, jBEntrar});
@@ -154,8 +148,8 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jBCancelar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)))
+                    .addComponent(jLEmpresa)
+                    .addComponent(jLVersao)))
         );
 
         pack();
@@ -170,14 +164,14 @@ public class Login extends javax.swing.JFrame {
                     principal.setVisible(true);
                     setVisible(false);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário ou Senha invalido!");
+                    JOptionPane.showMessageDialog(null, "Usuário ou Senha invalido.");
                     jPFSenha.setText(null);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Favor, preencher os campos obrigatórios!");
+            JOptionPane.showMessageDialog(null, "Favor, preencher os campos obrigatórios.");
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -193,14 +187,14 @@ public class Login extends javax.swing.JFrame {
                     principal.setVisible(true);
                     setVisible(false);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário ou Senha invalido!");
+                    JOptionPane.showMessageDialog(null, "Usuário ou Senha invalido.");
                     jPFSenha.setText(null);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Favor, preencher os campos obrigatórios!");
+            JOptionPane.showMessageDialog(null, "Favor, preencher os campos obrigatórios.");
         }
     }//GEN-LAST:event_jPFSenhaActionPerformed
 
@@ -223,17 +217,13 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
         //</editor-fold>
 
@@ -249,10 +239,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEntrar;
     private javax.swing.JLabel jLCabecalho;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLLogin;
     private javax.swing.JLabel jLSenha;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JPasswordField jPFSenha;
     private javax.swing.JTextField jTLogin;
     // End of variables declaration//GEN-END:variables

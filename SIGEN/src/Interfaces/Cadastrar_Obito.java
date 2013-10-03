@@ -17,8 +17,6 @@ import Modelo.Quadras;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -93,8 +91,6 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jCBCidade = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jBCadastrar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jDCData = new com.toedter.calendar.JDateChooser();
         jCBUF = new javax.swing.JComboBox();
         jLEstado = new javax.swing.JLabel();
@@ -108,6 +104,8 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
         jCBQuadra = new javax.swing.JComboBox();
         jLDono = new javax.swing.JLabel();
         jFTCPF = new javax.swing.JFormattedTextField();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -185,10 +183,6 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLabel3.setText("Versão: 1.4.6");
-
         jDCData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jCBUF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -244,14 +238,14 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
 
         jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,6 +329,10 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                 .addGap(176, 176, 176)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadastrar, jButton1});
@@ -350,7 +348,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                     .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLDono)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,12 +406,13 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap())))
+                .addGap(32, 32, 32))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLVersao)
+                    .addComponent(jLEmpresa))
+                .addContainerGap())
         );
 
         pack();
@@ -470,7 +469,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Cadastrar_Obito.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
@@ -491,7 +490,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
             Proprietarios proprietario = pdao.listarCPF(jFTCPF.getText());
             jLDono.setText(proprietario.getPro_nome());
         } catch (SQLException ex) {
-            Logger.getLogger(Cadastrar_Obito.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
 
     }//GEN-LAST:event_jBPesquisarActionPerformed
@@ -535,6 +534,7 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLData;
     private javax.swing.JLabel jLDocumento;
     private javax.swing.JLabel jLDono;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLFiliacaoM;
     private javax.swing.JLabel jLFiliacaoP;
@@ -546,10 +546,9 @@ public class Cadastrar_Obito extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLProprietario;
     private javax.swing.JLabel jLProtocolo;
     private javax.swing.JLabel jLQuadra;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTCausa;
     private javax.swing.JTextField jTDocumento;
     private javax.swing.JTextField jTFiliacaoM;

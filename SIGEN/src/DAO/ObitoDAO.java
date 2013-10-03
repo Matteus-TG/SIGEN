@@ -53,7 +53,7 @@ public class ObitoDAO {
 
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Obito cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Obito cadastrado com sucesso.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: " + ex);
         }
@@ -71,7 +71,7 @@ public class ObitoDAO {
                 + " proprietarios on chapas.pro_codigo = proprietarios.pro_codigo inner join"
                 + " cidades on cidades.cid_codigo = obitos.cid_codigo "
                 + "where proprietarios.pro_cpf = '" + cpf + "' order by obitos.obi_data";
-        System.out.println(sql);
+
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         List<Obitos> obitos = new ArrayList<>();
@@ -317,7 +317,7 @@ public class ObitoDAO {
 
     public List<Obitos> listarAvancado(String sql) throws SQLException {
         sql = sql + " order by obitos.obi_data";
-        System.out.println(sql);
+
         PreparedStatement pstmt = this.conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         List<Obitos> obitos = new ArrayList<>();

@@ -73,7 +73,7 @@ public class InsertGoogleDrive { //adicione aqui o CLIENT_ID que nós criamos
             request.getMediaHttpUploader().setDirectUploadEnabled(true);
 
             request.execute();
-            JOptionPane.showMessageDialog(null, "Gravação online efetuada com sucesso!");
+            JOptionPane.showMessageDialog(null, "Gravação online efetuada com sucesso.");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }

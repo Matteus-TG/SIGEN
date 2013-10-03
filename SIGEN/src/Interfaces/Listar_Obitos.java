@@ -86,8 +86,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jTCPF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTFalecido = new javax.swing.JTextField();
         jRBFalecido = new javax.swing.JRadioButton();
         jCBChapa = new javax.swing.JComboBox();
@@ -98,6 +96,8 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jCBQuadra = new javax.swing.JComboBox();
         jRBAvancado = new javax.swing.JRadioButton();
         jBAvancado = new javax.swing.JButton();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -178,10 +178,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         tabela.setModel(tmObito);
         jScrollPane1.setViewportView(tabela);
 
-        jLabel3.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLabel4.setText("Versão: 1.4.6");
-
         jTFalecido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFalecido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -229,6 +225,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
         jRBAvancado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jRBAvancado.setText("Avançado");
+        jRBAvancado.setToolTipText("Pesquisa exclusiva para nome do proprietário do túmulo, nome do falecido ou data.");
         jRBAvancado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBAvancadoActionPerformed(evt);
@@ -238,20 +235,21 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jBAvancado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBAvancado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
         jBAvancado.setText("Pesquisar");
+        jBAvancado.setToolTipText("Pesquisa exclusiva para nome do proprietário do túmulo, nome do falecido ou data.");
         jBAvancado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAvancadoActionPerformed(evt);
             }
         });
 
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,6 +312,10 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTFalecido, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(48, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,17 +363,17 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jRBCliente)
                         .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(302, 302, 302))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))))
+                            .addComponent(jLVersao)
+                            .addComponent(jLEmpresa)))))
         );
 
         pack();
@@ -422,7 +424,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     tmObito.setValueAt(tumAux, i, 12);
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jRBClienteActionPerformed
@@ -473,7 +475,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
 
@@ -489,7 +491,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             jTCliente.setText("");
             jTFalecido.setText("");
             if ((jDCInicio.getDate() == null) || (jDCFim.getDate() == null)) {
-                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data!");
+                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data.");
                 jRBData.setSelected(false);
                 while (tmObito.getRowCount() > 0) {
                     tmObito.removeRow(0);
@@ -531,7 +533,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                     }
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
             }
         }
@@ -583,7 +585,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jRBCPFActionPerformed
@@ -637,7 +639,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
 
         }
@@ -687,7 +689,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
 
         }
@@ -744,7 +746,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jRBTumuloActionPerformed
@@ -788,7 +790,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             jTCliente.setText("");
             jTFalecido.setText("");
             if ((jDCInicio.getDate() == null) || (jDCFim.getDate() == null)) {
-                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data!");
+                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data.");
                 jRBData.setSelected(false);
                 while (tmObito.getRowCount() > 0) {
                     tmObito.removeRow(0);
@@ -830,7 +832,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                     }
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
             }
         }
@@ -846,7 +848,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             jTCliente.setText("");
             jTFalecido.setText("");
             if ((jDCInicio.getDate() == null) || (jDCFim.getDate() == null)) {
-                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data!");
+                JOptionPane.showMessageDialog(null, "Favor, preencher os campos de data.");
                 jRBData.setSelected(false);
                 while (tmObito.getRowCount() > 0) {
                     tmObito.removeRow(0);
@@ -888,7 +890,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                     }
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
             }
         }
@@ -938,7 +940,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                         tmObito.setValueAt(tumAux, i, 12);
                     }
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
             }
 
@@ -954,12 +956,12 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jDCInicio;
     private javax.swing.JLabel jLCabecalho;
     private javax.swing.JLabel jLChapa;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLLetra;
     private javax.swing.JLabel jLQuadra;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRBAvancado;
     private javax.swing.JRadioButton jRBCPF;
     private javax.swing.JRadioButton jRBCliente;

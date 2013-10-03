@@ -59,7 +59,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return chapas;
     }
@@ -84,7 +84,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return quadras;
     }
@@ -108,7 +108,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return quadras;
     }
@@ -132,7 +132,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return quadras;
     }
@@ -159,7 +159,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return letras;
     }
@@ -177,7 +177,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
 
         return id;
@@ -209,7 +209,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return chapas;
     }
@@ -238,7 +238,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return chapas;
     }
@@ -251,7 +251,7 @@ public class TumuloDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }
 
@@ -264,7 +264,7 @@ public class TumuloDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }
 
@@ -276,9 +276,9 @@ public class TumuloDAO {
             stmt.setString(1, chapa.getChapa());
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Tumulo cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Tumulo cadastrado com sucesso.");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }
 
@@ -307,7 +307,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return letras;
     }
@@ -342,7 +342,7 @@ public class TumuloDAO {
             rs.close();
             pstmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
         }
         return chapas;
     }

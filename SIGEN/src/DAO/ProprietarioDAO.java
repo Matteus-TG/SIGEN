@@ -45,7 +45,7 @@ public class ProprietarioDAO {
 
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
         } catch (SQLException ex) {
             EnderecoDAO edao = new EnderecoDAO();
             edao.removeError();

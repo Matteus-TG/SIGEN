@@ -5,8 +5,6 @@ import Modelo.Proprietarios;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
@@ -43,13 +41,13 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
         jTNome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jLDireitos = new javax.swing.JLabel();
-        jLVersao = new javax.swing.JLabel();
         jBExcluir = new javax.swing.JButton();
         jBAtualizar = new javax.swing.JButton();
         jLCPF = new javax.swing.JLabel();
         jFTCPF = new javax.swing.JFormattedTextField();
         jBPesquisar = new javax.swing.JButton();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -78,10 +76,6 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
 
         tabela.setModel(tmProprietario);
         jScrollPane1.setViewportView(tabela);
-
-        jLDireitos.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLVersao.setText("Versão: 1.4.6");
 
         jBExcluir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/excluir.gif"))); // NOI18N
@@ -115,6 +109,10 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
             }
         });
 
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,8 +140,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                             .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLDireitos)
+                .addComponent(jLEmpresa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLVersao))
         );
@@ -166,17 +163,15 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLDireitos)
-                            .addComponent(jLVersao)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAtualizar)
                         .addGap(9, 9, 9)
-                        .addComponent(jBExcluir)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jBExcluir)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLVersao)
+                    .addComponent(jLEmpresa)))
         );
 
         pack();
@@ -216,7 +211,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     tmProprietario.setValueAt(endereco, i, 5);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jRBNomeActionPerformed
@@ -255,7 +250,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     tmProprietario.setValueAt(endereco, i, 5);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jTNomeActionPerformed
@@ -266,7 +261,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
             try {
                 pdao = new ProprietarioDAO();
                 pdao.remover(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
-                JOptionPane.showMessageDialog(null, "Cliente deletado com Sucesso!");
+                JOptionPane.showMessageDialog(null, "Cliente deletado com Sucesso.");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro:\n" + ex);
             }
@@ -310,7 +305,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     tmProprietario.setValueAt(endereco, i, 5);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jTNomeKeyTyped
@@ -324,7 +319,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                     Alterar_Proprietario ap = new Alterar_Proprietario(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
                     ap.setVisible(true);
                 } catch (ParseException ex) {
-                    Logger.getLogger(Listar_Proprietarios.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
             }
         } catch (SQLException ex) {
@@ -368,7 +363,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JLabel jLCPF;
     private javax.swing.JLabel jLCabecalho;
-    private javax.swing.JLabel jLDireitos;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLVersao;
     private javax.swing.JRadioButton jRBNome;
     private javax.swing.JScrollPane jScrollPane1;

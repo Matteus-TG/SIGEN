@@ -6,8 +6,6 @@ package Interfaces;
 
 import DAO.LoginDAO;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,8 +44,8 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
         jPFSenhaAtual = new javax.swing.JPasswordField();
         jPFNovaSenha = new javax.swing.JPasswordField();
         jPFSenha2 = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -78,18 +76,14 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
 
         jPFSenha2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel1.setText("VL Solutions. Todos os direitos reservados.");
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
 
-        jLabel2.setText("Versão: 1.4.6");
+        jLVersao.setText("Versão: 1.4.6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -110,6 +104,10 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
                                     .addComponent(jPFNovaSenha)
                                     .addComponent(jPFSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,10 +128,10 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
                     .addComponent(jPFSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jBConfirmar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)))
+                    .addComponent(jLEmpresa)
+                    .addComponent(jLVersao)))
         );
 
         pack();
@@ -150,6 +148,7 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Novas senhas informadas não conferem.");
                 }
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         } else {
             JOptionPane.showMessageDialog(null, "A senha atual está errada.");
@@ -158,11 +157,11 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBConfirmar;
     private javax.swing.JLabel jLCabecalho;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLNovaSenha;
     private javax.swing.JLabel jLSenha2;
     private javax.swing.JLabel jLSenhaAtual;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JPasswordField jPFNovaSenha;
     private javax.swing.JPasswordField jPFSenha2;
     private javax.swing.JPasswordField jPFSenhaAtual;

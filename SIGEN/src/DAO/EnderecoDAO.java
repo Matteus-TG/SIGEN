@@ -101,7 +101,7 @@ public class EnderecoDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }
 
@@ -120,7 +120,7 @@ public class EnderecoDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }
 

@@ -49,6 +49,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logoff"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMILogoffActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

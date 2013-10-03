@@ -68,8 +68,6 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jLCabecalho = new javax.swing.JLabel();
         jLCTPS = new javax.swing.JLabel();
         jTCTPS = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jTNumero = new javax.swing.JTextField();
         jLNumero = new javax.swing.JLabel();
         jTBairro = new javax.swing.JTextField();
@@ -87,6 +85,8 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jLLogin = new javax.swing.JLabel();
         jTLogin = new javax.swing.JTextField();
         jFTCPF = new javax.swing.JFormattedTextField();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -138,10 +138,6 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jLCTPS.setText("CTPS:");
 
         jTCTPS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jLabel1.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLabel2.setText("Versão: 1.4.6");
 
         jTNumero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -196,6 +192,10 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
 
         jFTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,10 +204,6 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                 .addGap(183, 183, 183)
                 .addComponent(jLCabecalho)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -282,6 +278,10 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                         .addComponent(jBLimpar)
                         .addGap(6, 6, 6)))
                 .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFTCPF, jTRG});
@@ -293,7 +293,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLCabecalho)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -343,8 +343,8 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                     .addComponent(jBLimpar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)))
+                    .addComponent(jLVersao)
+                    .addComponent(jLEmpresa)))
         );
 
         pack();
@@ -414,7 +414,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
                 marcaCampo();
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -433,6 +433,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLCelular;
     private javax.swing.JLabel jLCidade;
     private javax.swing.JLabel jLComplemento;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLLogin;
     private javax.swing.JLabel jLLogradouro;
@@ -440,8 +441,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLNumero;
     private javax.swing.JLabel jLRG;
     private javax.swing.JLabel jLTelefone;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTCEP;
     private javax.swing.JTextField jTCTPS;

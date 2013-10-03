@@ -33,7 +33,7 @@ public class LoginDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }
 
@@ -63,6 +63,6 @@ public class LoginDAO {
         stmt.setString(2, login);
         stmt.execute();
         stmt.close();
-        JOptionPane.showMessageDialog(null, "Senha alterada com sucesso!");
+        JOptionPane.showMessageDialog(null, "Senha alterada com sucesso.");
     }
 }

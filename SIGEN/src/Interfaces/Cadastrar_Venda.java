@@ -15,8 +15,6 @@ import Modelo.Vendas;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -72,8 +70,8 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
         jBCadastrar = new javax.swing.JButton();
         jBLimpar = new javax.swing.JButton();
         jDCData = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -147,18 +145,14 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
 
         jDCData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel2.setText("VL Solutions. Todos os direitos reservados.");
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
 
-        jLabel3.setText("Versão: 1.4.6");
+        jLVersao.setText("Versão: 1.4.6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -199,6 +193,10 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
                                         .addComponent(jTCliente))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadastrar, jBLimpar});
@@ -230,14 +228,14 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLData)
                     .addComponent(jDCData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jBLimpar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)))
+                    .addComponent(jLEmpresa)
+                    .addComponent(jLVersao)))
         );
 
         pack();
@@ -262,6 +260,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
                 tmVenda.setValueAt(proprietarios.get(i).getPro_rg(), i, 2);
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jTClienteKeyTyped
 
@@ -290,6 +289,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
                 venda.setVen_data(jDCData.getDate());
                 vdao.adicionar(venda);
                 tdao.sellTomb(venda.getProprietario().getPro_codigo(), venda.getChapa().getCodigo());
+                JOptionPane.showMessageDialog(null, "Venda efetuada com sucesso.");
             } else {
                 JOptionPane.showMessageDialog(null, "Dados obrigatórios (campos em negrito) faltando, por favor preencher corretamente.");
             }
@@ -303,7 +303,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
             }
             limpar();
         } catch (SQLException ex) {
-            Logger.getLogger(Cadastrar_Venda.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
@@ -325,10 +325,10 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLChapa;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLData;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLLetra;
     private javax.swing.JLabel jLQuadra;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTCliente;
     private javax.swing.JTable tabela;

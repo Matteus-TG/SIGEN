@@ -13,8 +13,6 @@ import Modelo.Proprietarios;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -78,13 +76,13 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jFTCelular = new javax.swing.JFormattedTextField();
         jBCadastrar = new javax.swing.JButton();
         jBLimpar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jCBCidade = new javax.swing.JComboBox();
         jDCNascimento = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jFTCPF = new javax.swing.JFormattedTextField();
         jFTCEP = new javax.swing.JFormattedTextField();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -169,10 +167,6 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("VL Solutions. Todos os direitos reservados.");
-
-        jLabel3.setText("Versão: 1.4.6");
-
         jCBCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jDCNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -184,14 +178,14 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
 
         jFTCEP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
+
+        jLVersao.setText("Versão: 1.4.6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3))
             .addGroup(layout.createSequentialGroup()
                 .addGap(172, 172, 172)
                 .addComponent(jLCabecalho)
@@ -259,6 +253,10 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadastrar, jBLimpar});
@@ -311,14 +309,14 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                     .addComponent(jLComplemento)
                     .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFTCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jBLimpar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)))
+                    .addComponent(jLEmpresa)
+                    .addComponent(jLVersao)))
         );
 
         pack();
@@ -403,15 +401,15 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLCelular;
     private javax.swing.JLabel jLCidade;
     private javax.swing.JLabel jLComplemento;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLEstado;
     private javax.swing.JLabel jLLogradouro;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLNumero;
     private javax.swing.JLabel jLRG;
     private javax.swing.JLabel jLTelefone;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTBairro;
     private javax.swing.JTextField jTComplemento;
     private javax.swing.JTextField jTLogradouro;

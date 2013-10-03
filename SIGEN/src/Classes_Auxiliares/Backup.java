@@ -20,7 +20,7 @@ public class Backup {
             pb.environment().put("PGPASSWORD", "senha");
             pb.redirectErrorStream(true);
             p = pb.start();
-            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro:\n" + ex);
         }

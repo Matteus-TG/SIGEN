@@ -9,8 +9,6 @@ import Modelo.Chapas;
 import Modelo.Letras;
 import Modelo.Quadras;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,8 +43,8 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
         jLQuadra = new javax.swing.JLabel();
         jLCabecalho = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLEmpresa = new javax.swing.JLabel();
+        jLVersao = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -86,9 +84,9 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("VL Solutions. Todos os direitos reservados.");
+        jLEmpresa.setText("NBNG. Todos os direitos reservados.");
 
-        jLabel3.setText("Versão: 1.4.6");
+        jLVersao.setText("Versão: 1.4.6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,10 +96,6 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLCabecalho)
                 .addGap(132, 132, 132))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -121,6 +115,10 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
                 .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLVersao))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCadastrar, jButton1});
@@ -142,14 +140,14 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLLetra)
                     .addComponent(jTChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jButton1))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)))
+                    .addComponent(jLVersao)
+                    .addComponent(jLEmpresa)))
         );
 
         pack();
@@ -184,7 +182,7 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
 
 
         } catch (SQLException ex) {
-            Logger.getLogger(Cadastrar_Tumulo.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
 
 
@@ -194,10 +192,10 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLCabecalho;
     private javax.swing.JLabel jLChapa;
+    private javax.swing.JLabel jLEmpresa;
     private javax.swing.JLabel jLLetra;
     private javax.swing.JLabel jLQuadra;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLVersao;
     private javax.swing.JTextField jTChapa;
     private javax.swing.JTextField jTLetra;
     private javax.swing.JTextField jTQuadra;
