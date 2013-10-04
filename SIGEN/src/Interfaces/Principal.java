@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/icone.png")));
         setLocationRelativeTo(null);
+        atalhos();
     }
 
     /**
@@ -50,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
         jMIBPOFF = new javax.swing.JMenuItem();
         jMIBPON = new javax.swing.JMenuItem();
         jMILogoff = new javax.swing.JMenuItem();
-        jMTumulo = new javax.swing.JMenu();
+        jMJazigo = new javax.swing.JMenu();
         jMICadastrar_Tumulo = new javax.swing.JMenuItem();
         jMIListar_Tumulos = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -105,12 +107,12 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu.add(jMArquivo);
 
-        jMTumulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cruz.png"))); // NOI18N
-        jMTumulo.setText("Óbitos");
-        jMTumulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMTumulo.addActionListener(new java.awt.event.ActionListener() {
+        jMJazigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cruz.png"))); // NOI18N
+        jMJazigo.setText("Jazigos");
+        jMJazigo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMJazigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMTumuloActionPerformed(evt);
+                jMJazigoActionPerformed(evt);
             }
         });
 
@@ -121,7 +123,7 @@ public class Principal extends javax.swing.JFrame {
                 jMICadastrar_TumuloActionPerformed(evt);
             }
         });
-        jMTumulo.add(jMICadastrar_Tumulo);
+        jMJazigo.add(jMICadastrar_Tumulo);
 
         jMIListar_Tumulos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMIListar_Tumulos.setText("Listar Túmulos");
@@ -130,8 +132,8 @@ public class Principal extends javax.swing.JFrame {
                 jMIListar_TumulosActionPerformed(evt);
             }
         });
-        jMTumulo.add(jMIListar_Tumulos);
-        jMTumulo.add(jSeparator1);
+        jMJazigo.add(jMIListar_Tumulos);
+        jMJazigo.add(jSeparator1);
 
         jMICadastrar_Obito.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMICadastrar_Obito.setText("Cadastrar Óbito");
@@ -140,7 +142,7 @@ public class Principal extends javax.swing.JFrame {
                 jMICadastrar_ObitoActionPerformed(evt);
             }
         });
-        jMTumulo.add(jMICadastrar_Obito);
+        jMJazigo.add(jMICadastrar_Obito);
 
         jMIListar_Obitos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMIListar_Obitos.setText("Listar Óbitos");
@@ -149,9 +151,9 @@ public class Principal extends javax.swing.JFrame {
                 jMIListar_ObitosActionPerformed(evt);
             }
         });
-        jMTumulo.add(jMIListar_Obitos);
+        jMJazigo.add(jMIListar_Obitos);
 
-        jMenu.add(jMTumulo);
+        jMenu.add(jMJazigo);
 
         jMVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/agenda.png"))); // NOI18N
         jMVendas.setText("Vendas");
@@ -259,8 +261,8 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMTumuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMTumuloActionPerformed
-    }//GEN-LAST:event_jMTumuloActionPerformed
+    private void jMJazigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMJazigoActionPerformed
+    }//GEN-LAST:event_jMJazigoActionPerformed
 
     private void jMICadastrar_TumuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_TumuloActionPerformed
         Cadastrar_Tumulo ct = new Cadastrar_Tumulo();
@@ -414,9 +416,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIListar_Vendas;
     private javax.swing.JMenuItem jMIListar_clientes;
     private javax.swing.JMenuItem jMILogoff;
-    private javax.swing.JMenu jMTumulo;
+    private javax.swing.JMenu jMJazigo;
     private javax.swing.JMenu jMVendas;
     private javax.swing.JMenuBar jMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    public void atalhos() {
+        jMClientes.setMnemonic('C');
+        jMArquivo.setMnemonic('A');
+        jMFuncionarios.setMnemonic('F');
+        jMJazigo.setMnemonic('J');
+        jMVendas.setMnemonic('V');
+    }
 }

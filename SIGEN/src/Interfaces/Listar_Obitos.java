@@ -540,52 +540,57 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBDataActionPerformed
 
     private void jRBCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBCPFActionPerformed
-        if ((jRBCPF.isSelected()) && (!jRBAvancado.isSelected())) {
-            jRBData.setSelected(false);
-            jRBCliente.setSelected(false);
-            jRBTumulo.setSelected(false);
-            jRBFalecido.setSelected(false);
-            jDCFim.setDate(null);
-            jDCInicio.setDate(null);
-            jTCliente.setText("");
-            jTFalecido.setText("");
+        if (jTCPF.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo não preenchido.");
+            jRBCPF.setSelected(false);
+        } else {
+            if ((jRBCPF.isSelected()) && (!jRBAvancado.isSelected())) {
+                jRBData.setSelected(false);
+                jRBCliente.setSelected(false);
+                jRBTumulo.setSelected(false);
+                jRBFalecido.setSelected(false);
+                jDCFim.setDate(null);
+                jDCInicio.setDate(null);
+                jTCliente.setText("");
+                jTFalecido.setText("");
 
-            try {
-                odao = new ObitoDAO();
-                obitos = odao.listarCPF(jTCPF.getText());
-                String tumAux = "6";
+                try {
+                    odao = new ObitoDAO();
+                    obitos = odao.listarCPF(jTCPF.getText());
+                    String tumAux = "6";
 
-                while (tmObito.getRowCount() > 0) {
-                    tmObito.removeRow(0);
+                    while (tmObito.getRowCount() > 0) {
+                        tmObito.removeRow(0);
+                    }
+
+                    String[] linha = new String[]{null, null, null, null};
+
+
+                    for (int i = 0; i < obitos.size(); i++) {
+
+                        tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
+                                + obitos.get(i).getChapa().getChapa() + " Letra: "
+                                + obitos.get(i).getChapa().getLetra().getLetra();
+
+                        tmObito.addRow(linha);
+                        tmObito.setValueAt(obitos.get(i).getProprietario().getPro_nome(), i, 0);
+                        tmObito.setValueAt(obitos.get(i).getObi_nome(), i, 1);
+                        tmObito.setValueAt(obitos.get(i).getObi_idade(), i, 2);
+                        tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
+                        tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
+                        tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
+                        tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
+                        tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
+                        tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
+                        tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
+                        tmObito.setValueAt(obitos.get(i).getObi_medico(), i, 10);
+                        tmObito.setValueAt(obitos.get(i).getObi_causa_morte(), i, 11);
+                        tmObito.setValueAt(tumAux, i, 12);
+
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
-
-                String[] linha = new String[]{null, null, null, null};
-
-
-                for (int i = 0; i < obitos.size(); i++) {
-
-                    tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
-                            + obitos.get(i).getChapa().getChapa() + " Letra: "
-                            + obitos.get(i).getChapa().getLetra().getLetra();
-
-                    tmObito.addRow(linha);
-                    tmObito.setValueAt(obitos.get(i).getProprietario().getPro_nome(), i, 0);
-                    tmObito.setValueAt(obitos.get(i).getObi_nome(), i, 1);
-                    tmObito.setValueAt(obitos.get(i).getObi_idade(), i, 2);
-                    tmObito.setValueAt(obitos.get(i).getCidade().getCid_nome(), i, 3);
-                    tmObito.setValueAt(obitos.get(i).getObi_protocolo(), i, 4);
-                    tmObito.setValueAt(obitos.get(i).getObi_guia(), i, 5);
-                    tmObito.setValueAt(Methods.formatData(obitos.get(i).getObi_data()), i, 6);
-                    tmObito.setValueAt(obitos.get(i).getObi_numero_documento(), i, 7);
-                    tmObito.setValueAt(obitos.get(i).getObi_pai(), i, 8);
-                    tmObito.setValueAt(obitos.get(i).getObi_mae(), i, 9);
-                    tmObito.setValueAt(obitos.get(i).getObi_medico(), i, 10);
-                    tmObito.setValueAt(obitos.get(i).getObi_causa_morte(), i, 11);
-                    tmObito.setValueAt(tumAux, i, 12);
-
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
         }
     }//GEN-LAST:event_jRBCPFActionPerformed
@@ -901,6 +906,11 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBChapaActionPerformed
 
     private void jRBAvancadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBAvancadoActionPerformed
+        jRBCPF.setSelected(false);
+        jRBCliente.setSelected(false);
+        jRBData.setSelected(false);
+        jRBFalecido.setSelected(false);
+        jRBTumulo.setSelected(false);
     }//GEN-LAST:event_jRBAvancadoActionPerformed
 
     private void jBAvancadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvancadoActionPerformed
@@ -916,7 +926,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     }
 
                     String[] linha = new String[]{null, null, null, null};
-
 
                     for (int i = 0; i < obitos.size(); i++) {
 
@@ -943,7 +952,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
                 }
             }
-
             sql = aux;
         }
     }//GEN-LAST:event_jBAvancadoActionPerformed
@@ -978,9 +986,43 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean verifica() {
+        if (((jRBCliente.isSelected()) && (jRBFalecido.isSelected())) && (jRBData.isSelected())) {
+            if (jDCInicio.getDate() == null || jDCFim.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Campos de data sem valor.");
+                return false;
+            } else {
+                sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
+                sql = sql + " AND obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
+                sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                        + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+                return true;
+            }
+        }
         if (((!jRBCliente.isSelected()) && (!jRBFalecido.isSelected())) && (!jRBData.isSelected())) {
             JOptionPane.showMessageDialog(null, "Favor, escolher ao menos uma opção.");
             return false;
+        }
+        if (((jRBCliente.isSelected()) && (jRBData.isSelected()) && (!jRBFalecido.isSelected()))) {
+            if (jDCInicio.getDate() == null || jDCFim.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Campos de data sem valor.");
+                return false;
+            } else {
+                sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
+                sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                        + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+                return true;
+            }
+        }
+        if (((jRBFalecido.isSelected()) && (jRBData.isSelected())) && (!jRBCliente.isSelected())) {
+            if (jDCInicio.getDate() == null || jDCFim.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Campos de data sem valor.");
+                return false;
+            } else {
+                sql = sql + " obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
+                sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                        + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+                return true;
+            }
         }
         if (((jRBCliente.isSelected()) && (!jRBFalecido.isSelected())) && (!jRBData.isSelected())) {
             sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
@@ -991,34 +1033,28 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             return true;
         }
         if (((jRBData.isSelected()) && (!jRBCliente.isSelected())) && (!jRBFalecido.isSelected())) {
-            sql = sql + " obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
-                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
-            return true;
+            if (jDCInicio.getDate() == null || jDCFim.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Campos de data sem valor.");
+                return false;
+            } else {
+                sql = sql + " obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
+                        + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
+                return true;
+            }
         }
-        if (((jRBCliente.isSelected()) && (jRBFalecido.isSelected())) && (jRBData.isSelected() == false)) {
+        if (((jRBCliente.isSelected()) && (jRBFalecido.isSelected())) && (!jRBData.isSelected())) {
             sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
             sql = sql + " AND obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
-            return true;
-        }
-        if (((jRBCliente.isSelected()) && (jRBData.isSelected()) && (jRBFalecido.isSelected() == false))) {
-            sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
-            sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
-                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
-            return true;
-        }
-        if (((jRBFalecido.isSelected()) && (jRBData.isSelected())) && (jRBCliente.isSelected() == false)) {
-            sql = sql + " obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
-            sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
-                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
-            return true;
-        }
-        if (((jRBCliente.isSelected()) && (jRBFalecido.isSelected())) && (jRBData.isSelected())) {
-            sql = sql + " proprietarios.pro_nome ilike '%" + jTCliente.getText() + "%'";
-            sql = sql + " AND obitos.obi_nome ilike '%" + jTFalecido.getText() + "%'";
-            sql = sql + " AND obi_data >= '" + new java.sql.Date(jDCInicio.getDate().getTime()) + ""
-                    + "' AND obi_data <= '" + new java.sql.Date(jDCFim.getDate().getTime()) + "'";
             return true;
         }
         return false;
+    }
+
+    public void remove() {
+        jRBCPF.setSelected(false);
+        jRBCliente.setSelected(false);
+        jRBData.setSelected(false);
+        jRBFalecido.setSelected(false);
+        jRBTumulo.setSelected(false);
     }
 }
