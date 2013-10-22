@@ -347,7 +347,7 @@ public class TumuloDAO {
         return chapas;
     }
 
-    public int getTomb(String quadra, String chapa, String letra) {
+    public int getTomb(String quadra, String letra, String chapa) {
         int id = 0;
         String sql = "select chapas.cha_codigo from chapas inner join letras on"
                 + " chapas.cha_letra = letras.let_codigo inner join quadras on"

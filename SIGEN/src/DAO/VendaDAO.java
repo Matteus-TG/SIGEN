@@ -40,7 +40,6 @@ public class VendaDAO {
 
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Venda Cadastrada com Sucesso.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
