@@ -41,6 +41,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         maskCelular.install(jFTCelular);
         maskCPF.install(jFTCPF);
         maskCEP.install(jFTCEP);
+        populaCidade();
     }
 
     /**
@@ -327,16 +328,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBLimparActionPerformed
 
     private void jCBUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUFActionPerformed
-        String aux = (String) jCBUF.getSelectedItem();
-        jCBCidade.removeAllItems();
-        i = 0;
-        edao = new EnderecoDAO();
-        cidadeNomes = edao.listarCidades(aux);
-
-        while (i < cidadeNomes.size()) {
-            jCBCidade.addItem(cidadeNomes.get(i));
-            i++;
-        }
+        populaCidade();
     }//GEN-LAST:event_jCBUFActionPerformed
 
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
@@ -376,7 +368,6 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Dados obrigatórios (campos em negrito) faltando, por favor preencher corretamente.");
                 marcaCampo();
             }
-
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
@@ -429,9 +420,10 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jTNumero.setText("");
         jFTCelular.setText("");
         jFTTelefone.setText("");
-        jCBUF.setSelectedIndex(1);
+        jCBUF.setSelectedIndex(0);
         jCBCidade.removeAllItems();
         jDCNascimento.setDate(null);
+        populaCidade();
     }
 
     public boolean verifica(Proprietarios proprietario) {
@@ -454,5 +446,18 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
         jLNumero.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLRG.setFont(new java.awt.Font("Tahoma", 1, 18));
         jDCNascimento.setDate(null);
+    }
+
+    private void populaCidade() {
+        String aux = (String) jCBUF.getSelectedItem();
+        jCBCidade.removeAllItems();
+        i = 0;
+        edao = new EnderecoDAO();
+        cidadeNomes = edao.listarCidades(aux);
+
+        while (i < cidadeNomes.size()) {
+            jCBCidade.addItem(cidadeNomes.get(i));
+            i++;
+        }
     }
 }

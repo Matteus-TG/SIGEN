@@ -5,6 +5,7 @@
 package Classes_Auxiliares;
 
 import Connection.ConnectionFactory;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,8 +39,12 @@ public class Cria_Carteirinha extends Thread {
     @Override
     public void run() {
         try {
-            String caminho = "C:/SIGEN/XML/Carteirinha_xml.jrxml";
-            JasperDesign desenho = JRXmlLoader.load(caminho);
+        URL arquivo = getClass().getResource("/Classes_Auxiliares/Carteirinha_xml.jrxml");
+        
+        String resultado = arquivo.getPath();
+        resultado = resultado.replaceAll("%20", " ");
+
+        JasperDesign desenho = JRXmlLoader.load(resultado);
             JasperReport relatorio = JasperCompileManager.compileReport(desenho);
 
             String query = "select proprietarios.pro_nome, proprietarios.pro_rg,proprietarios.pro_cpf,"

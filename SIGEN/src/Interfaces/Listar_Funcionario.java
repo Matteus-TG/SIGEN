@@ -31,6 +31,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
     public Listar_Funcionario() {
         super("SIGEN - Listagem de Funcionários");
         initComponents();
+        tabela.setRowHeight(23);
     }
 
     /**
@@ -75,6 +76,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             }
         });
 
+        tabela.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tabela.setModel(tmFuncionario);
         jScrollPane1.setViewportView(tabela);
 
@@ -171,7 +173,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLEmpresa)
                     .addComponent(jLVersao)))

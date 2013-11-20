@@ -136,11 +136,45 @@ public class TumuloDAO {
         }
         return quadras;
     }
+//
+
+    public List<Letras> listarLetrasVendidas() {
+        //METODO CORRETO - NAO DELETAR
+        List<Letras> letras = new ArrayList<>();
+        String sql = "SELECT DISTINCT LETRAS.LET_LETRA,LETRAS.LET_CODIGO,LETRAS.LET_QUADRA "
+                + "FROM CHAPAS INNER JOIN LETRAS ON CHAPAS.CHA_LETRA = LETRAS.LET_CODIGO INNER JOIN QUADRAS ON"
+                + " LETRAS.LET_QUADRA = QUADRAS.TUM_QUADRA LEFT JOIN PROPRIETARIOS ON"
+                + " CHAPAS.PRO_CODIGO = PROPRIETARIOS.PRO_CODIGO   "
+                + "WHERE CHAPAS.PRO_CODIGO IS NOT NULL";
+        try {
+            PreparedStatement pstmt = this.conexao.prepareStatement(sql);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Letras letra = new Letras();
+                Quadras quadra = new Quadras();
+
+                quadra.setQuadra(rs.getString("let_quadra"));
+                letra.setQuadra(quadra);
+                letra.setCodigo(rs.getInt("let_codigo"));
+                letra.setLetra(rs.getString("let_letra"));
+                letras.add(letra);
+            }
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: \n" + e);
+        }
+        return letras;
+    }
 
     public List<Letras> listarLetras(String aux) {
         //METODO CORRETO - NAO DELETAR
         List<Letras> letras = new ArrayList<>();
-        String sql = "SELECT DISTINCT LET_CODIGO,LET_LETRA,LET_QUADRA FROM LETRAS  INNER JOIN CHAPAS ON LETRAS.LET_CODIGO = CHAPAS.CHA_LETRA  WHERE LETRAS.LET_QUADRA = '" + aux + "'";
+        String sql = "SELECT DISTINCT LET_CODIGO,LET_LETRA,LET_QUADRA "
+                + "FROM LETRAS  INNER JOIN CHAPAS ON LETRAS.LET_CODIGO = CHAPAS.CHA_LETRA  "
+                + "WHERE LETRAS.LET_QUADRA = '" + aux + "'";
         try {
             PreparedStatement pstmt = this.conexao.prepareStatement(sql);
 
@@ -251,7 +285,7 @@ public class TumuloDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
+
         }
     }
 
@@ -264,7 +298,7 @@ public class TumuloDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
+
         }
     }
 
@@ -289,6 +323,7 @@ public class TumuloDAO {
                 + "LETRAS.LET_QUADRA = QUADRAS.TUM_QUADRA LEFT JOIN PROPRIETARIOS ON "
                 + "CHAPAS.PRO_CODIGO = PROPRIETARIOS.PRO_CODIGO "
                 + "WHERE PROPRIETARIOS.PRO_CPF = '" + cpf + "' AND QUADRAS.TUM_QUADRA = '" + quadraAux + "'";
+        System.out.println(sql);
         try {
             PreparedStatement pstmt = this.conexao.prepareStatement(sql);
 

@@ -182,7 +182,7 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
 
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
+            JOptionPane.showMessageDialog(null, "Dados repetidos - Ignorando.");
         }
 
 
@@ -211,8 +211,9 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
         if (((chapa.getChapa().equals("")) || chapa.getLetra().getLetra().equals(""))
                 || chapa.getLetra().getQuadra().getQuadra().equals("")) {
             return false;
+        } else {
+        return true;    
         }
-        return true;
     }
 
     private void marcaCampo() {

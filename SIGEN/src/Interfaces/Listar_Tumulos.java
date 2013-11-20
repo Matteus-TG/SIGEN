@@ -28,6 +28,7 @@ public class Listar_Tumulos extends javax.swing.JInternalFrame {
     public Listar_Tumulos() {
         super("SIGEN - Listagem de Túmulos");
         initComponents();
+        tabela.setRowHeight(23);
     }
 
     /**
@@ -40,7 +41,7 @@ public class Listar_Tumulos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jRBPesquisar = new javax.swing.JRadioButton();
         jRBLimpar = new javax.swing.JRadioButton();
@@ -49,9 +50,9 @@ public class Listar_Tumulos extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable1.setModel(tmTumulo);
-        jScrollPane1.setViewportView(jTable1);
+        tabela.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tabela.setModel(tmTumulo);
+        jScrollPane1.setViewportView(tabela);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Listagem de Túmulos");
@@ -153,6 +154,6 @@ public class Listar_Tumulos extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRBLimpar;
     private javax.swing.JRadioButton jRBPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

@@ -43,6 +43,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         maskCelular.install(jFTCelular);
         maskCPF.install(jFTCPF);
         jTLogin.setToolTipText("PrimeiroNome.UltimoNome");
+        populaCidade();
     }
 
     /**
@@ -355,16 +356,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBLimparActionPerformed
 
     private void jCBUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUFActionPerformed
-        String aux = (String) jCBUF.getSelectedItem();
-        jCBCidade.removeAllItems();
-        i = 0;
-        edao = new EnderecoDAO();
-        cidadeNomes = edao.listarCidades(aux);
-
-        while (i < cidadeNomes.size()) {
-            jCBCidade.addItem(cidadeNomes.get(i));
-            i++;
-        }
+       populaCidade();
     }//GEN-LAST:event_jCBUFActionPerformed
 
     private void jTLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLogradouroActionPerformed
@@ -465,8 +457,8 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jFTCelular.setText("");
         jFTTelefone.setText("");
         jTCTPS.setText("");
-        jCBUF.setSelectedIndex(1);
-        jCBCidade.removeAllItems();
+        jCBUF.setSelectedIndex(0);
+        populaCidade();
     }
 
     public boolean verifica(Funcionarios funcionario, Login login) {
@@ -487,5 +479,18 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
         jLCTPS.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLLogradouro.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLBairro.setFont(new java.awt.Font("Tahoma", 1, 18));
+    }
+
+    private void populaCidade() {
+ String aux = (String) jCBUF.getSelectedItem();
+        jCBCidade.removeAllItems();
+        i = 0;
+        edao = new EnderecoDAO();
+        cidadeNomes = edao.listarCidades(aux);
+
+        while (i < cidadeNomes.size()) {
+            jCBCidade.addItem(cidadeNomes.get(i));
+            i++;
+        }
     }
 }

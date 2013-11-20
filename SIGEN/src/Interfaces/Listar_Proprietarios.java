@@ -25,6 +25,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
         initComponents();
         MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
         maskCPF.install(jFTCPF);
+        tabela.setRowHeight(23);
     }
 
     /**
@@ -74,6 +75,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
             }
         });
 
+        tabela.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tabela.setModel(tmProprietario);
         jScrollPane1.setViewportView(tabela);
 
@@ -168,7 +170,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                         .addComponent(jBAtualizar)
                         .addGap(9, 9, 9)
                         .addComponent(jBExcluir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLVersao)
                     .addComponent(jLEmpresa)))

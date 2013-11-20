@@ -10,6 +10,7 @@ import Modelo.Cidades;
 import Modelo.Enderecos;
 import Modelo.Estados;
 import Modelo.Funcionarios;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -46,6 +47,7 @@ public class Alterar_funcionario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         fillField(ID);
         preencheCidade();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/icone.png")));
     }
 
     /**

@@ -44,6 +44,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
         super("SIGEN - Cadastro das Vendas de Túmulos");
         initComponents();
         preencheQuadra();
+        tabela.setRowHeight(23);
     }
 
     /**

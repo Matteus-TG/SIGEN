@@ -10,6 +10,7 @@ import Modelo.Cidades;
 import Modelo.Enderecos;
 import Modelo.Estados;
 import Modelo.Proprietarios;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -46,6 +47,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         maskCelular.install(jFTCelular);
         fillField(ID);
         preencheCidade();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/icone.png")));
     }
 
     /**
@@ -69,7 +71,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         jLCelular = new javax.swing.JLabel();
         jLTelefone = new javax.swing.JLabel();
         jCBCidade = new javax.swing.JComboBox();
-        jBCadastrar = new javax.swing.JButton();
+        jBAtualizar = new javax.swing.JButton();
         jBLimpar = new javax.swing.JButton();
         jTNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -129,12 +131,12 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
 
         jCBCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jBCadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/salvar.png"))); // NOI18N
-        jBCadastrar.setText("Editar");
-        jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jBAtualizar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/salvar.png"))); // NOI18N
+        jBAtualizar.setText("Editar");
+        jBAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCadastrarActionPerformed(evt);
+                jBAtualizarActionPerformed(evt);
             }
         });
 
@@ -263,7 +265,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jFTCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBCadastrar)
+                                .addComponent(jBAtualizar)
                                 .addGap(42, 42, 42)
                                 .addComponent(jBLimpar)))
                         .addGap(35, 35, 35))))
@@ -321,7 +323,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
                     .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCadastrar)
+                    .addComponent(jBAtualizar)
                     .addComponent(jBLimpar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -345,7 +347,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCBUFActionPerformed
 
-    private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
+    private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
         if ((jDCNascimento.getDate() != null) || (jCBCidade.getSelectedItem() != null)) {
             try {
                 Cidades cidade = new Cidades();
@@ -383,7 +385,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Alguns campos obrigatórios estão faltando. Por favor, preenche-los.");
         }
-    }//GEN-LAST:event_jBCadastrarActionPerformed
+    }//GEN-LAST:event_jBAtualizarActionPerformed
 
     private void jBLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimparActionPerformed
         jTNome.setText("aaaaaaaaaaaa");
@@ -405,7 +407,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTLogradouroActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCadastrar;
+    private javax.swing.JButton jBAtualizar;
     private javax.swing.JButton jBLimpar;
     private javax.swing.JComboBox jCBCidade;
     private javax.swing.JComboBox jCBUF;
