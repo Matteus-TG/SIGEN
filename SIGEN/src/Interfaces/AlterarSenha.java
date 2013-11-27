@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
-public class Alterar_Senha extends javax.swing.JInternalFrame {
+public class AlterarSenha extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Alterar_Senha
@@ -20,7 +20,7 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
     private String login;
     private String senha;
 
-    public Alterar_Senha(String l, String s) {
+    public AlterarSenha(String l, String s) {
         super("SIGEN - Alteração de senha de usuário");
         login = l;
         senha = s;
@@ -128,7 +128,7 @@ public class Alterar_Senha extends javax.swing.JInternalFrame {
                     .addComponent(jPFSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jBConfirmar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLEmpresa)
                     .addComponent(jLVersao)))

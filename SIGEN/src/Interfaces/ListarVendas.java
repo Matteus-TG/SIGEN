@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class Listar_Vendas extends javax.swing.JInternalFrame {
+public class ListarVendas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Listar_Vendas
@@ -36,7 +36,7 @@ public class Listar_Vendas extends javax.swing.JInternalFrame {
     DefaultTableModel tmVenda = new DefaultTableModel(null, new String[]{"Nome", "CPF", "RG", "Quadra", "Chapa", "Letra", "Data"});
     //definição das colunas da tabela
 
-    public Listar_Vendas() {
+    public ListarVendas() {
         super("SIGEN - Listagem das Vendas");
 
         initComponents();

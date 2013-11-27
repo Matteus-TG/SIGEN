@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
-public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
+public class CadastrarTumulo extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Cadastrar_Tumulo
      */
-    public Cadastrar_Tumulo() {
+    public CadastrarTumulo() {
         super("SIGEN - Cadastrar Túmulos");
         initComponents();
     }
@@ -140,7 +140,7 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLLetra)
                     .addComponent(jTChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jButton1))
@@ -180,11 +180,9 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
                 marcaCampo();
             }
 
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Dados repetidos - Ignorando.");
         }
-
 
     }//GEN-LAST:event_jBCadastrarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,7 +210,7 @@ public class Cadastrar_Tumulo extends javax.swing.JInternalFrame {
                 || chapa.getLetra().getQuadra().getQuadra().equals("")) {
             return false;
         } else {
-        return true;    
+            return true;
         }
     }
 

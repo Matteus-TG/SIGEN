@@ -22,7 +22,7 @@ import javax.swing.text.MaskFormatter;
  *
  * @author user
  */
-public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
+public class CadastrarFuncionario extends javax.swing.JInternalFrame {
 
     List<String> cidadeNomes;
     int i;
@@ -33,7 +33,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     /**
      * Creates new form Cadastrar_Funcionario
      */
-    public Cadastrar_Funcionario() throws ParseException {
+    public CadastrarFuncionario() throws ParseException {
         super("SIGEN - Cadastro de Funcionários");
         initComponents();
         MaskFormatter maskTelefone = new MaskFormatter("(##) ####-####");
@@ -294,7 +294,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLCabecalho)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -356,7 +356,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBLimparActionPerformed
 
     private void jCBUFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBUFActionPerformed
-       populaCidade();
+        populaCidade();
     }//GEN-LAST:event_jCBUFActionPerformed
 
     private void jTLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLogradouroActionPerformed
@@ -482,7 +482,7 @@ public class Cadastrar_Funcionario extends javax.swing.JInternalFrame {
     }
 
     private void populaCidade() {
- String aux = (String) jCBUF.getSelectedItem();
+        String aux = (String) jCBUF.getSelectedItem();
         jCBCidade.removeAllItems();
         i = 0;
         edao = new EnderecoDAO();

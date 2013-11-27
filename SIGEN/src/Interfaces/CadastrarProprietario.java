@@ -20,7 +20,7 @@ import javax.swing.text.MaskFormatter;
  *
  * @author user
  */
-public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
+public class CadastrarProprietario extends javax.swing.JInternalFrame {
 
     List<String> cidadeNomes;
     int i;
@@ -30,7 +30,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
     /**
      * Creates new form Cadastro_Proprietarios
      */
-    public Cadastrar_Proprietario() throws ParseException {
+    public CadastrarProprietario() throws ParseException {
         super("SIGEN - Cadastro de Proprietários");
         initComponents();
         MaskFormatter maskTelefone = new MaskFormatter("(##) ####-####");
@@ -310,7 +310,7 @@ public class Cadastrar_Proprietario extends javax.swing.JInternalFrame {
                     .addComponent(jLComplemento)
                     .addComponent(jTComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFTCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jBLimpar))

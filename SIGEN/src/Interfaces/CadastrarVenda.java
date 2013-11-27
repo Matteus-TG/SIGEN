@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class Cadastrar_Venda extends javax.swing.JInternalFrame {
+public class CadastrarVenda extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Cadastrar_Venda
@@ -40,7 +40,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
     DefaultTableModel tmVenda = new DefaultTableModel(null, new String[]{"Nome", "CPF", "RG"});
     //definição das colunas da tabela
 
-    public Cadastrar_Venda() {
+    public CadastrarVenda() {
         super("SIGEN - Cadastro das Vendas de Túmulos");
         initComponents();
         preencheQuadra();
@@ -229,7 +229,7 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLData)
                     .addComponent(jDCData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
                     .addComponent(jBLimpar))
@@ -279,9 +279,6 @@ public class Cadastrar_Venda extends javax.swing.JInternalFrame {
             chapa.setCodigo(tdao.getTomb(String.valueOf(jCBQuadra.getSelectedItem()),
                     String.valueOf(jCBLetra.getSelectedItem()),
                     String.valueOf(jCBChapa.getSelectedItem())));
-
-
-
 
             if (verifica(jTCliente.getText(), jDCData.getDate())) {
                 proprietario.setPro_codigo(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());

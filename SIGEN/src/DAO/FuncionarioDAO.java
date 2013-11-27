@@ -122,8 +122,6 @@ public class FuncionarioDAO {
         Estados estado = new Estados();
         while (rs.next()) {
 
-
-
             funcionario.setFun_codigo(rs.getInt("fun_codigo"));
             funcionario.setFun_nome(rs.getString("fun_nome"));
             funcionario.setFun_rg(rs.getString("fun_rg"));

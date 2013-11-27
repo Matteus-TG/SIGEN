@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class Listar_Tumulos extends javax.swing.JInternalFrame {
+public class ListarTumulos extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Listar_Tumulos
@@ -25,7 +25,7 @@ public class Listar_Tumulos extends javax.swing.JInternalFrame {
     ListSelectionModel lsmTumulo;
     TumuloDAO tdao;
 
-    public Listar_Tumulos() {
+    public ListarTumulos() {
         super("SIGEN - Listagem de Túmulos");
         initComponents();
         tabela.setRowHeight(23);

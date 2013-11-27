@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author matt
  */
-public class Carteira_Cliente extends javax.swing.JInternalFrame {
+public class CarteiraCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Carteira_Cliente
@@ -30,7 +30,7 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
     ListSelectionModel lsmProprietario;
     DefaultTableModel tmProprietario = new DefaultTableModel(null, new String[]{"Nome", "CPF", "RG"});
 
-    public Carteira_Cliente() {
+    public CarteiraCliente() {
         super("SIGEN - Impressão da Carteira de Identificação");
         initComponents();
     }
@@ -133,7 +133,7 @@ public class Carteira_Cliente extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBImprimir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLVersao)
                     .addComponent(jLEmpresa)))

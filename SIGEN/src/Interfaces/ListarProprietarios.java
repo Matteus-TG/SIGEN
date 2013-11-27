@@ -13,14 +13,14 @@ import javax.swing.text.MaskFormatter;
  *
  * @author user
  */
-public class Listar_Proprietarios extends javax.swing.JInternalFrame {
+public class ListarProprietarios extends javax.swing.JInternalFrame {
 
     ProprietarioDAO pdao;
     List<Proprietarios> proprietarios;//List de uma classe do modelo para utilização na tabela;
     DefaultTableModel tmProprietario = new DefaultTableModel(null, new String[]{"Nome", "CPF", "RG", "Telefone", "Celular", "Endereço"});
     //definição das colunas da tabela
 
-    public Listar_Proprietarios() throws ParseException {
+    public ListarProprietarios() throws ParseException {
         super("SIGEN - Listagem de Proprietários");
         initComponents();
         MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
@@ -318,7 +318,7 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Selecione um cadastro a ser alterado.");
             } else {
                 try {
-                    Alterar_Proprietario ap = new Alterar_Proprietario(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
+                    AlterarProprietario ap = new AlterarProprietario(proprietarios.get(tabela.getSelectedRow()).getPro_codigo());
                     ap.setVisible(true);
                 } catch (ParseException ex) {
                     JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
@@ -331,31 +331,35 @@ public class Listar_Proprietarios extends javax.swing.JInternalFrame {
 // Variables declaration - do not modify//GEN-LAST:event_jBAtualizarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        try {
-            while (tmProprietario.getRowCount() > 0) {
-                tmProprietario.removeRow(0);
+        if (jFTCPF.getText().equals("   .   .   -  ")) {
+            JOptionPane.showMessageDialog(null, "CPF inválido.");
+        } else {
+            try {
+                while (tmProprietario.getRowCount() > 0) {
+                    tmProprietario.removeRow(0);
+                }
+                jRBNome.setSelected(false);
+                jTNome.setText("");
+                pdao = new ProprietarioDAO();
+                Proprietarios proprietario = pdao.listarCPF(jFTCPF.getText());
+
+                tmProprietario.addRow(new String[]{null, null, null, null});
+                tmProprietario.setValueAt(proprietario.getPro_nome(), 0, 0);
+                tmProprietario.setValueAt(proprietario.getPro_cpf(), 0, 1);
+                tmProprietario.setValueAt(proprietario.getPro_rg(), 0, 2);
+                tmProprietario.setValueAt(proprietario.getTel_numero(), 0, 3);
+                tmProprietario.setValueAt(proprietario.getCel_numero(), 0, 4);
+                tmProprietario.setValueAt(proprietario.getEndereco().getEnd_logradouro() + " - "
+                        + proprietario.getEndereco().getEnd_numero() + ". "
+                        + proprietario.getEndereco().getCidade().getCid_nome() + ", "
+                        + proprietario.getEndereco().getCidade().getEstado().getEst_sigla() + " - "
+                        + proprietario.getEndereco().getEnd_bairro() + ". CEP: "
+                        + proprietario.getEndereco().getEnd_cep() + " ("
+                        + proprietario.getEndereco().getEnd_complemento() + ").", 0, 5);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
             }
-            jRBNome.setSelected(false);
-            jTNome.setText("");
-            pdao = new ProprietarioDAO();
-            Proprietarios proprietario = pdao.listarCPF(jFTCPF.getText());
-
-            tmProprietario.addRow(new String[]{null, null, null, null});
-            tmProprietario.setValueAt(proprietario.getPro_nome(), 0, 0);
-            tmProprietario.setValueAt(proprietario.getPro_cpf(), 0, 1);
-            tmProprietario.setValueAt(proprietario.getPro_rg(), 0, 2);
-            tmProprietario.setValueAt(proprietario.getTel_numero(), 0, 3);
-            tmProprietario.setValueAt(proprietario.getCel_numero(), 0, 4);
-            tmProprietario.setValueAt(proprietario.getEndereco().getEnd_logradouro() + " - "
-                    + proprietario.getEndereco().getEnd_numero() + ". "
-                    + proprietario.getEndereco().getCidade().getCid_nome() + ", "
-                    + proprietario.getEndereco().getCidade().getEstado().getEst_sigla() + " - "
-                    + proprietario.getEndereco().getEnd_bairro() + ". CEP: "
-                    + proprietario.getEndereco().getEnd_cep() + " ("
-                    + proprietario.getEndereco().getEnd_complemento() + ").", 0, 5);
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: \n" + ex);
         }
     }//GEN-LAST:event_jBPesquisarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

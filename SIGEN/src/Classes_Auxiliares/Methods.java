@@ -38,8 +38,6 @@ public class Methods {
         int iDigito1 = 0, iDigito2 = 0, iRestoDivisao = 0;
         String strDigitoVerificador, strDigitoResultado;
 
-
-
         if (!strCpf.substring(0, 1).equals("")) {
             try {
                 strCpf = strCpf.replace('.', ' ');

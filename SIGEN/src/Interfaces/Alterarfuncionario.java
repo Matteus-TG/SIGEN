@@ -21,7 +21,7 @@ import javax.swing.text.MaskFormatter;
  *
  * @author matt
  */
-public class Alterar_funcionario extends javax.swing.JFrame {
+public class Alterarfuncionario extends javax.swing.JFrame {
 
     /**
      * Creates new form Alterar_funcionario
@@ -35,7 +35,7 @@ public class Alterar_funcionario extends javax.swing.JFrame {
     Cidades cidade = new Cidades();
     Estados estado = new Estados();
 
-    public Alterar_funcionario(int ID) throws SQLException, ParseException {
+    public Alterarfuncionario(int ID) throws SQLException, ParseException {
         super("SIGEN - Alteração de Cadastro dos Funcionários");
 
         this.setResizable(false);

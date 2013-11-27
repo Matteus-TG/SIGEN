@@ -213,7 +213,6 @@ public class Login extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-
                 }
             }
         } catch (ClassNotFoundException ex) {

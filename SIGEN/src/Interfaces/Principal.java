@@ -10,9 +10,10 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 
 /**
  *
@@ -265,20 +266,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMJazigoActionPerformed
 
     private void jMICadastrar_TumuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_TumuloActionPerformed
-        Cadastrar_Tumulo ct = new Cadastrar_Tumulo();
+        CadastrarTumulo ct = new CadastrarTumulo();
         JPainel.add(ct);
         ct.show();
     }//GEN-LAST:event_jMICadastrar_TumuloActionPerformed
 
     private void jMIListar_TumulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_TumulosActionPerformed
-        Listar_Tumulos lt = new Listar_Tumulos();
+        ListarTumulos lt = new ListarTumulos();
         JPainel.add(lt);
         lt.show();
     }//GEN-LAST:event_jMIListar_TumulosActionPerformed
 
     private void jMICadastrar_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_ClientesActionPerformed
         try {
-            Cadastrar_Proprietario cp = new Cadastrar_Proprietario();
+            CadastrarProprietario cp = new CadastrarProprietario();
             JPainel.add(cp);
             cp.show();
         } catch (ParseException ex) {
@@ -289,7 +290,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMIListar_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_clientesActionPerformed
         try {
-            Listar_Proprietarios lp = new Listar_Proprietarios();
+            ListarProprietarios lp = new ListarProprietarios();
             JPainel.add(lp);
             lp.show();
         } catch (ParseException ex) {
@@ -299,7 +300,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMICadastrar_FuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_FuncionariosActionPerformed
         try {
-            Cadastrar_Funcionario cf = new Cadastrar_Funcionario();
+            CadastrarFuncionario cf = new CadastrarFuncionario();
             JPainel.add(cf);
             cf.show();
         } catch (ParseException ex) {
@@ -308,32 +309,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadastrar_FuncionariosActionPerformed
 
     private void jMIListar_FuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_FuncionariosActionPerformed
-        Listar_Funcionario lf = new Listar_Funcionario();
+        ListarFuncionario lf = new ListarFuncionario();
         JPainel.add(lf);
         lf.show();
     }//GEN-LAST:event_jMIListar_FuncionariosActionPerformed
 
     private void jMIAlterar_SenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAlterar_SenhaActionPerformed
-        Alterar_Senha as = new Alterar_Senha(login, senha);
+        AlterarSenha as = new AlterarSenha(login, senha);
         JPainel.add(as);
         as.show();
     }//GEN-LAST:event_jMIAlterar_SenhaActionPerformed
 
     private void jMICadastrar_VendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_VendasActionPerformed
-        Cadastrar_Venda cv = new Cadastrar_Venda();
+        CadastrarVenda cv = new CadastrarVenda();
         JPainel.add(cv);
         cv.show();
     }//GEN-LAST:event_jMICadastrar_VendasActionPerformed
 
     private void jMIListar_VendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_VendasActionPerformed
-        Listar_Vendas lv = new Listar_Vendas();
+        ListarVendas lv = new ListarVendas();
         JPainel.add(lv);
         lv.show();
     }//GEN-LAST:event_jMIListar_VendasActionPerformed
 
     private void jMICadastrar_ObitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrar_ObitoActionPerformed
         try {
-            Cadastrar_Obito co = new Cadastrar_Obito();
+            CadastrarObito co = new CadastrarObito();
             JPainel.add(co);
             co.show();
         } catch (ParseException ex) {
@@ -342,13 +343,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadastrar_ObitoActionPerformed
 
     private void jMIListar_ObitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListar_ObitosActionPerformed
-        Listar_Obitos lo = new Listar_Obitos();
-        JPainel.add(lo);
-        lo.show();
+        try {
+            ListarObitos lo = new ListarObitos();
+            JPainel.add(lo);
+            lo.show();
+        } catch (ParseException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMIListar_ObitosActionPerformed
 
     private void jMICarteirinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICarteirinhaActionPerformed
-        Carteira_Cliente cc = new Carteira_Cliente();
+        CarteiraCliente cc = new CarteiraCliente();
         JPainel.add(cc);
         cc.show();
     }//GEN-LAST:event_jMICarteirinhaActionPerformed

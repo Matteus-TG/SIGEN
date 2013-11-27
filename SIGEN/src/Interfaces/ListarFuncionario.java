@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class Listar_Funcionario extends javax.swing.JInternalFrame {
+public class ListarFuncionario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Listar_Funcionario
@@ -28,7 +28,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
     DefaultTableModel tmFuncionario = new DefaultTableModel(null, new String[]{"Nome", "Data de Cadastro", "CTPS", "CPF", "RG", "Telefone", "Celular", "Endereço"});
     //definição das colunas da tabela
 
-    public Listar_Funcionario() {
+    public ListarFuncionario() {
         super("SIGEN - Listagem de Funcionários");
         initComponents();
         tabela.setRowHeight(23);
@@ -283,7 +283,7 @@ public class Listar_Funcionario extends javax.swing.JInternalFrame {
             if (tabela.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "Selecione um cadastro a ser alterado.");
             } else {
-                Alterar_funcionario af = new Alterar_funcionario(funcionarios.get(tabela.getSelectedRow()).getFun_codigo());
+                Alterarfuncionario af = new Alterarfuncionario(funcionarios.get(tabela.getSelectedRow()).getFun_codigo());
                 af.setVisible(true);
             }
         } catch (SQLException ex) {

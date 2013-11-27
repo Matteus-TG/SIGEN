@@ -21,7 +21,7 @@ import javax.swing.text.MaskFormatter;
  *
  * @author user
  */
-public class Alterar_Proprietario extends javax.swing.JFrame {
+public class AlterarProprietario extends javax.swing.JFrame {
 
     /**
      * Creates new form Alterar_Proprietario
@@ -35,7 +35,7 @@ public class Alterar_Proprietario extends javax.swing.JFrame {
     Cidades cidade = new Cidades();
     Estados estado = new Estados();
 
-    public Alterar_Proprietario(int ID) throws SQLException, ParseException {
+    public AlterarProprietario(int ID) throws SQLException, ParseException {
         super("SIGEN - Alteração de Cadastro de Clientes");
 
         this.setResizable(false);

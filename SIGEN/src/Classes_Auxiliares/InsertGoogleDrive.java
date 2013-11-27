@@ -62,7 +62,6 @@ public class InsertGoogleDrive { //adicione aqui o CLIENT_ID que nós criamos
         body.setDescription("Arquivo de backup - SIGEC");
         body.setMimeType("text/plain");
 
-
         java.io.File fileContent = new java.io.File(caminho);
 
         FileContent mediaContent = new FileContent("text/plain", fileContent);

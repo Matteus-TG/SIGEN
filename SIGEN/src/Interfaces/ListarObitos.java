@@ -12,16 +12,18 @@ import Modelo.Letras;
 import Modelo.Obitos;
 import Modelo.Quadras;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author matt
  */
-public class Listar_Obitos extends javax.swing.JInternalFrame {
+public class ListarObitos extends javax.swing.JInternalFrame {
 
     TumuloDAO tdao;
     ObitoDAO odao;
@@ -37,10 +39,11 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
      */
     String sql, aux;
 
-    public Listar_Obitos() {
+    public ListarObitos() throws ParseException {
         super("SIGEN - Listagem dos Óbitos");
         initComponents();
-
+        MaskFormatter maskCPF = new MaskFormatter("###.###.###-##");
+        maskCPF.install(jTCPF);
         jCBLetra.removeAllItems();
         jCBChapa.removeAllItems();
         jCBQuadra.removeAllItems();
@@ -84,21 +87,21 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jRBData = new javax.swing.JRadioButton();
         jRBCPF = new javax.swing.JRadioButton();
-        jTCPF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jTFalecido = new javax.swing.JTextField();
         jRBFalecido = new javax.swing.JRadioButton();
-        jCBChapa = new javax.swing.JComboBox();
         jLQuadra = new javax.swing.JLabel();
         jLChapa = new javax.swing.JLabel();
         jLLetra = new javax.swing.JLabel();
-        jCBLetra = new javax.swing.JComboBox();
-        jCBQuadra = new javax.swing.JComboBox();
         jRBAvancado = new javax.swing.JRadioButton();
         jBAvancado = new javax.swing.JButton();
         jLEmpresa = new javax.swing.JLabel();
         jLVersao = new javax.swing.JLabel();
+        jCBChapa = new javax.swing.JComboBox();
+        jCBQuadra = new javax.swing.JComboBox();
+        jCBLetra = new javax.swing.JComboBox();
+        jTCPF = new javax.swing.JFormattedTextField();
 
         setClosable(true);
 
@@ -164,18 +167,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             }
         });
 
-        jTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCPFActionPerformed(evt);
-            }
-        });
-        jTCPF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTCPFKeyTyped(evt);
-            }
-        });
-
         tabela.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tabela.setModel(tmObito);
         jScrollPane1.setViewportView(tabela);
@@ -195,13 +186,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             }
         });
 
-        jCBChapa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCBChapa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBChapaActionPerformed(evt);
-            }
-        });
-
         jLQuadra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLQuadra.setText("Quadra:");
 
@@ -210,20 +194,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
         jLLetra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLLetra.setText("Chapa:");
-
-        jCBLetra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCBLetra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBLetraActionPerformed(evt);
-            }
-        });
-
-        jCBQuadra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCBQuadra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBQuadraActionPerformed(evt);
-            }
-        });
 
         jRBAvancado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jRBAvancado.setText("Avançado");
@@ -248,6 +218,29 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
         jLVersao.setText("Versão: 1.4.6");
 
+        jCBChapa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCBChapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBChapaActionPerformed(evt);
+            }
+        });
+
+        jCBQuadra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCBQuadra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBQuadraActionPerformed(evt);
+            }
+        });
+
+        jCBLetra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCBLetra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBLetraActionPerformed(evt);
+            }
+        });
+
+        jTCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,19 +264,18 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                                 .addComponent(jRBTumulo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(44, 44, 44))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(68, 68, 68)
                                         .addComponent(jLChapa)
-                                        .addGap(68, 68, 68)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLLetra))
+                                        .addGap(75, 75, 75)
+                                        .addComponent(jLLetra))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(57, 57, 57)
+                                        .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(117, 117, 117)
                                 .addComponent(jRBData)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -307,13 +299,13 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                                 .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRBCPF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRBFalecido)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTFalecido, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(48, Short.MAX_VALUE))))
+                        .addContainerGap(36, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLEmpresa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,6 +331,11 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jRBData))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRBAvancado)
+                            .addComponent(jBAvancado)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLQuadra)
                             .addComponent(jLChapa)
@@ -347,25 +344,20 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBQuadra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCBLetra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRBAvancado)
-                            .addComponent(jBAvancado))))
+                            .addComponent(jCBChapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jRBCPF)
                         .addComponent(jRBFalecido)
-                        .addComponent(jTFalecido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFalecido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jRBCliente)
                         .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,7 +394,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                 }
 
                 String[] linha = new String[]{null, null, null, null};
-
 
                 for (int i = 0; i < obitos.size(); i++) {
 
@@ -452,7 +443,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                 }
 
                 String[] linha = new String[]{null, null, null, null};
-
 
                 for (int i = 0; i < obitos.size(); i++) {
 
@@ -511,7 +501,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                     String[] linha = new String[]{null, null, null, null};
 
-
                     for (int i = 0; i < obitos.size(); i++) {
 
                         tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
@@ -567,7 +556,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                     String[] linha = new String[]{null, null, null, null};
 
-
                     for (int i = 0; i < obitos.size(); i++) {
 
                         tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
@@ -597,10 +585,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jRBCPFActionPerformed
 
-    private void jTCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCPFActionPerformed
-
     private void jTFalecidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFalecidoKeyTyped
         if ((jRBFalecido.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBData.setSelected(false);
@@ -621,7 +605,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                 }
 
                 String[] linha = new String[]{null, null, null, null};
-
 
                 for (int i = 0; i < obitos.size(); i++) {
 
@@ -729,7 +712,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                 String[] linha = new String[]{null, null, null, null};
 
-
                 for (int i = 0; i < obitos.size(); i++) {
 
                     tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
@@ -758,35 +740,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jRBTumuloActionPerformed
 
-    private void jCBLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBLetraActionPerformed
-        String aux = String.valueOf(jCBQuadra.getSelectedItem());
-        String aux2 = String.valueOf(jCBLetra.getSelectedItem());
-        jCBChapa.removeAllItems();
-
-        tdao = new TumuloDAO();
-        tumulosChapas = tdao.listarChapasVendidas(tdao.pegaIDLetra(aux, aux2), aux);
-        for (int i = 0; i < tumulosChapas.size(); i++) {
-            jCBChapa.addItem(tumulosChapas.get(i).getChapa());
-        }
-        jRBTumulo.setSelected(false);
-    }//GEN-LAST:event_jCBLetraActionPerformed
-
-    private void jCBQuadraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBQuadraActionPerformed
-        jCBLetra.removeAllItems();
-        tdao = new TumuloDAO();
-
-        String aux = String.valueOf(jCBQuadra.getSelectedItem());
-        tumulosLetras = tdao.listarLetras(aux);
-        for (int i = 0; i < tumulosLetras.size(); i++) {
-            jCBLetra.addItem(tumulosLetras.get(i).getLetra());
-        }
-        jRBTumulo.setSelected(false);
-    }//GEN-LAST:event_jCBQuadraActionPerformed
-
-    private void jTCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCPFKeyTyped
-        jRBCPF.setSelected(false);
-    }//GEN-LAST:event_jTCPFKeyTyped
-
     private void jDCInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCInicioPropertyChange
         if ((jRBData.isSelected()) && (!jRBAvancado.isSelected())) {
             jRBTumulo.setSelected(false);
@@ -814,7 +767,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
                     }
 
                     String[] linha = new String[]{null, null, null, null};
-
 
                     for (int i = 0; i < obitos.size(); i++) {
 
@@ -873,7 +825,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
 
                     String[] linha = new String[]{null, null, null, null};
 
-
                     for (int i = 0; i < obitos.size(); i++) {
 
                         tumAux = "Quadra: " + obitos.get(i).getChapa().getLetra().getQuadra().getQuadra() + " Chapa: "
@@ -902,10 +853,6 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jDCFimPropertyChange
-
-    private void jCBChapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBChapaActionPerformed
-        jRBTumulo.setSelected(false);
-    }//GEN-LAST:event_jCBChapaActionPerformed
 
     private void jRBAvancadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBAvancadoActionPerformed
         jRBCPF.setSelected(false);
@@ -957,6 +904,36 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
             sql = aux;
         }
     }//GEN-LAST:event_jBAvancadoActionPerformed
+
+    private void jCBChapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBChapaActionPerformed
+        jRBTumulo.setSelected(false);
+    }//GEN-LAST:event_jCBChapaActionPerformed
+
+    private void jCBQuadraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBQuadraActionPerformed
+        jCBLetra.removeAllItems();
+        tdao = new TumuloDAO();
+
+        String aux = String.valueOf(jCBQuadra.getSelectedItem());
+        tumulosLetras = tdao.listarLetrasVendidas();
+        for (int i = 0; i < tumulosLetras.size(); i++) {
+            jCBLetra.addItem(tumulosLetras.get(i).getLetra());
+        }
+        jRBTumulo.setSelected(false);
+    }//GEN-LAST:event_jCBQuadraActionPerformed
+
+    private void jCBLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBLetraActionPerformed
+        String aux = String.valueOf(jCBQuadra.getSelectedItem());
+        String aux2 = String.valueOf(jCBLetra.getSelectedItem());
+        jCBChapa.removeAllItems();
+
+        tdao = new TumuloDAO();
+        tumulosChapas = tdao.listarChapasVendidas(tdao.pegaIDLetra(aux, aux2), aux);
+        for (int i = 0; i < tumulosChapas.size(); i++) {
+            jCBChapa.addItem(tumulosChapas.get(i).getChapa());
+        }
+        jRBTumulo.setSelected(false);
+    }//GEN-LAST:event_jCBLetraActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAvancado;
     private javax.swing.JComboBox jCBChapa;
@@ -981,7 +958,7 @@ public class Listar_Obitos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTCPF;
+    private javax.swing.JFormattedTextField jTCPF;
     private javax.swing.JTextField jTCliente;
     private javax.swing.JTextField jTFalecido;
     private javax.swing.JTable tabela;
